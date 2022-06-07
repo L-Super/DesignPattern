@@ -45,7 +45,7 @@ class Creator {
 	 * 子类可以通过重写工厂方法并从中返回不同类型的产品来间接更改该业务逻辑。
 	 */
 	std::string SomeOperation() const {
-		// Call the factory method to create a Product object.
+		// 调用工厂方法创建 Product 对象
 		Product* product = this->FactoryMethod();
 		// Now, use the product.
 		std::string result = "Creator: The same creator's code has just worked with " + product->Operation();
