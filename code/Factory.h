@@ -55,15 +55,12 @@ class Creator {
 };
 
 /**
- * Concrete Creators override the factory method in order to change the
- * resulting product's type.
+ * Concrete Creators 覆盖工厂方法以更改结果产品的类型。
  */
 class ConcreteCreator1 : public Creator {
 	/**
-	 * Note that the signature of the method still uses the abstract product type,
-	 * even though the concrete product is actually returned from the method. This
-	 * way the Creator can stay independent of concrete product classes.
-	 */
+	* 注意，该方法的签名仍然使用抽象产品类型，即使具体产品实际上是从该方法返回的。这样，Creator 就可以独立于具体的产品类别。
+	*/
  public:
 	Product* FactoryMethod() const override {
 		return new ConcreteProduct1();
@@ -78,9 +75,7 @@ class ConcreteCreator2 : public Creator {
 };
 
 /**
- * The client code works with an instance of a concrete creator, albeit through
- * its base interface. As long as the client keeps working with the creator via
- * the base interface, you can pass it any creator's subclass.
+ * 客户端代码与具体创建者的实例一起工作，尽管是通过其基本接口。只要客户端通过基本接口继续与创建者合作，您就可以将任何创建者的子类传递给它。
  */
 void ClientCode(const Creator& creator) {
 	// ...
@@ -90,8 +85,7 @@ void ClientCode(const Creator& creator) {
 }
 
 /**
- * The Application picks a creator's type depending on the configuration or
- * environment.
+ * 应用程序根据配置或环境选择创建者的类型。
  */
 
 int main() {
