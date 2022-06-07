@@ -2,6 +2,7 @@
 // Created by Listening on 2022/6/7.
 // 工厂方法
 //
+#include <iostream>
 #include <string>
 
 /**
@@ -14,43 +15,35 @@ class Product {
 };
 
 /**
- * Concrete Products provide various implementations of the Product interface.
+ * 具体产品提供了产品接口的各种实现
  */
 class ConcreteProduct1 : public Product {
  public:
 	std::string Operation() const override {
-		return "{Result of the ConcreteProduct1}";
+		return "{ConcreteProduct1}";
 	}
 };
 class ConcreteProduct2 : public Product {
  public:
 	std::string Operation() const override {
-		return "{Result of the ConcreteProduct2}";
+		return "{ConcreteProduct2}";
 	}
 };
 
 /**
- * The Creator class declares the factory method that is supposed to return an
- * object of a Product class. The Creator's subclasses usually provide the
- * implementation of this method.
+ * Creator 类声明了应该返回 Product 类对象的工厂方法。 Creator 的子类通常提供此方法的实现
  */
-
 class Creator {
 	/**
-	 * Note that the Creator may also provide some default implementation of the
-	 * factory method.
+	 * 注意，Creator 还可能提供工厂方法的一些默认实现。
 	 */
  public:
 	virtual ~Creator(){};
 	virtual Product* FactoryMethod() const = 0;
 	/**
-	 * Also note that, despite its name, the Creator's primary responsibility is
-	 * not creating products. Usually, it contains some core business logic that
-	 * relies on Product objects, returned by the factory method. Subclasses can
-	 * indirectly change that business logic by overriding the factory method and
-	 * returning a different type of product from it.
+	 * 注意，Creator 的主要责任不是创造产品。通常，它包含一些依赖于 Product 对象的核心业务逻辑，由工厂方法返回。
+	 * 子类可以通过重写工厂方法并从中返回不同类型的产品来间接更改该业务逻辑。
 	 */
-
 	std::string SomeOperation() const {
 		// Call the factory method to create a Product object.
 		Product* product = this->FactoryMethod();
