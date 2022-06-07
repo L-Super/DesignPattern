@@ -87,7 +87,6 @@ void ClientCode(const Creator& creator) {
 /**
  * 应用程序根据配置或环境选择创建者的类型。
  */
-
 int main() {
 	std::cout << "App: Launched with the ConcreteCreator1.\n";
 	Creator* creator = new ConcreteCreator1();

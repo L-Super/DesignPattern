@@ -5,7 +5,8 @@ set(CMAKE_CXX_STANDARD 14)
 
 set(SRC
 #        main.cpp
-        Flyweight.cpp
-        Factory.h)
+#        Flyweight.cpp
+        Factory.cpp
+        )
 
 add_executable(${PROJECT_NAME} ${SRC})

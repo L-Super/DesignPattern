@@ -2,8 +2,6 @@
 // Created by Listening on 2022/5/17.
 //
 
-#ifndef _FLYWEIGHT_CPP_
-#define _FLYWEIGHT_CPP_
 /**
  * Flyweight Design Pattern 享元模式
  *
@@ -153,27 +151,27 @@ void AddCarToPoliceDatabase(
  * initialization stage of the application.
  */
 
-int main()
-{
-	FlyweightFactory *factory = new FlyweightFactory({{"Chevrolet", "Camaro2018", "pink"}, {"Mercedes Benz", "C300", "black"}, {"Mercedes Benz", "C500", "red"}, {"BMW", "M5", "red"}, {"BMW", "X6", "white"}});
-	factory->ListFlyweights();
+//int main()
+//{
+//	FlyweightFactory *factory = new FlyweightFactory({{"Chevrolet", "Camaro2018", "pink"}, {"Mercedes Benz", "C300", "black"}, {"Mercedes Benz", "C500", "red"}, {"BMW", "M5", "red"}, {"BMW", "X6", "white"}});
+//	factory->ListFlyweights();
+//
+//	AddCarToPoliceDatabase(*factory,
+//		"CL234IR",
+//		"James Doe",
+//		"BMW",
+//		"M5",
+//		"red");
+//
+//	AddCarToPoliceDatabase(*factory,
+//		"CL234IR",
+//		"James Doe",
+//		"BMW",
+//		"X1",
+//		"red");
+//	factory->ListFlyweights();
+//	delete factory;
+//
+//	return 0;
+//}
 
-	AddCarToPoliceDatabase(*factory,
-		"CL234IR",
-		"James Doe",
-		"BMW",
-		"M5",
-		"red");
-
-	AddCarToPoliceDatabase(*factory,
-		"CL234IR",
-		"James Doe",
-		"BMW",
-		"X1",
-		"red");
-	factory->ListFlyweights();
-	delete factory;
-
-	return 0;
-}
-#endif //_FLYWEIGHT_CPP_
