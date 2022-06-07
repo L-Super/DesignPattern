@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "工厂方法.md",
+            "file": "DesignPattern1.md",
             "mode": "preview",
             "source": false
           }
@@ -69,7 +69,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "工厂方法.md",
+                "file": "DesignPattern1.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -89,7 +89,7 @@
   },
   "active": "54f734a8c0260ce4",
   "lastOpenFiles": [
-    "工厂方法.md",
-    "DesignPattern.md"
+    "DesignPattern1.md",
+    "工厂方法.md"
   ]
 }
