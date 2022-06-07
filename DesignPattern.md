@@ -22,8 +22,10 @@
 	- [[简单工厂]]模式( Simple Factory Pattern )
 	- [工厂方法](工厂方法.md)模式(Factory Method Pattern)
 	- 抽象工厂模式(Abstract Factory)
-	- 建造者模式
-	- 单例模式
+	- 建造者模式（Builder）
+	- 原型模式（Prototype）
+	- 单例模式（Singleton）
+
 -   **结构型模式**：介绍如何将对象和类组装成较大的结构， 并同时保持结构的灵活和高效。
 	- 适配器模式
 	- 桥接模式
