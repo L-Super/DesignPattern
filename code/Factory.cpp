@@ -10,7 +10,7 @@
  */
 class Product {
  public:
-	virtual ~Product() {}
+	virtual ~Product() = default;
 	virtual std::string Operation() const = 0;
 };
 
@@ -38,7 +38,7 @@ class Factory {
 	 * 注意，Factory 还可能提供工厂方法的一些默认实现。
 	 */
  public:
-	virtual ~Factory(){};
+	virtual ~Factory()= default;
 	virtual Product* FactoryMethod() const = 0;
 	/**
 	 * 注意，Factory 的主要责任不是创造产品。通常，它包含一些依赖于 Product 对象的核心业务逻辑，由工厂方法返回。
