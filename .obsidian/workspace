@@ -4,11 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "691770b26c5c11c0",
+        "id": "11dab30283307b47",
         "type": "leaf",
         "state": {
-          "type": "graph",
-          "state": {}
+          "type": "markdown",
+          "state": {
+            "file": "抽象工厂.md",
+            "mode": "preview",
+            "source": false
+          }
         }
       }
     ],
@@ -65,6 +69,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "抽象工厂.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -82,11 +87,12 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "691770b26c5c11c0",
+  "active": "11dab30283307b47",
   "lastOpenFiles": [
+    "抽象工厂.md",
+    "DesignPattern.md",
     "code/include/spdlog/README.md",
     "工厂方法.md",
-    "DesignPattern.md",
     "DesignPattern1.md"
   ]
 }
