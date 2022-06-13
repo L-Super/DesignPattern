@@ -6,8 +6,8 @@ set(CMAKE_CXX_STANDARD 14)
 set(SRC
 #        main.cpp
 #        Flyweight.cpp
-        Factory.cpp
-#        AbstractFactory.cpp
+#        Factory.cpp
+        AbstractFactory.cpp
         )
 
 set(INCLUDEDIR ${CMAKE_SOURCE_DIR}/include)
