@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "DesignPattern.md",
+            "file": "抽象工厂.md",
             "mode": "preview",
             "source": false
           }
@@ -69,7 +69,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "DesignPattern.md",
+                "file": "抽象工厂.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -89,8 +89,8 @@
   },
   "active": "11dab30283307b47",
   "lastOpenFiles": [
-    "DesignPattern.md",
     "抽象工厂.md",
+    "DesignPattern.md",
     "工厂方法.md",
     "code/include/spdlog/README.md",
     "DesignPattern1.md"
