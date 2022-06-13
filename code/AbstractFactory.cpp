@@ -45,17 +45,15 @@ class AbstractProductB {
 };
 
 /**
- * Concrete Products are created by corresponding Concrete Factories.
+ * 具体产品由相应的具体工厂创建。
  */
 class ConcreteProductB1 : public AbstractProductB {
  public:
 	std::string UseFuncB() const override {
-		return "The result of the product B1.";
+		return "The product B1.";
 	}
 	/**
-	 * The variant, Product B1, is only able to work correctly with the variant,
-	 * Product A1. Nevertheless, it accepts any instance of AbstractProductA as an
-	 * argument.
+	 * Product B1只能够正确地与Product A1一起工作。然而，它接受任何 AbstractProductA 实例作为参数。
 	 */
 	std::string AnotherUseFuncB(const AbstractProductA &collaborator) const override {
 		const std::string result = collaborator.UseFuncA();
@@ -66,12 +64,10 @@ class ConcreteProductB1 : public AbstractProductB {
 class ConcreteProductB2 : public AbstractProductB {
  public:
 	std::string UseFuncB() const override {
-		return "The result of the product B2.";
+		return "The product B2.";
 	}
 	/**
-	 * The variant, Product B2, is only able to work correctly with the variant,
-	 * Product A2. Nevertheless, it accepts any instance of AbstractProductA as an
-	 * argument.
+	 * Product B2只能够正确地与 Product A2一起工作。然而，它接受任何 AbstractProductA 实例作为参数。
 	 */
 	std::string AnotherUseFuncB(const AbstractProductA &collaborator) const override {
 		const std::string result = collaborator.UseFuncA();
