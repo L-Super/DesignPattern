@@ -9,44 +9,39 @@
 class AbstractProductA {
  public:
 	virtual ~AbstractProductA(){};
-	virtual std::string UsefulFunctionA() const = 0;
+	virtual std::string UseFuncA() const = 0;
 };
 
 /**
- * Concrete Products are created by corresponding Concrete Factories.
+ * 具体产品由相应的具体工厂创建。
  */
 class ConcreteProductA1 : public AbstractProductA {
  public:
-	std::string UsefulFunctionA() const override {
-		return "The result of the product A1.";
+	std::string UseFuncA() const override {
+		return "The product A1.";
 	}
 };
 
 class ConcreteProductA2 : public AbstractProductA {
-	std::string UsefulFunctionA() const override {
-		return "The result of the product A2.";
+	std::string UseFuncA() const override {
+		return "The product A2.";
 	}
 };
 
 /**
- * Here's the the base interface of another product. All products can interact
- * with each other, but proper interaction is possible only between products of
- * the same concrete variant.
+ * 这是另一个产品的基本接口。所有产品都可以相互交互，但只有在相同具体变体的产品之间才能进行适当的交互。
  */
 class AbstractProductB {
 	/**
-	 * Product B is able to do its own thing...
+	 * 产品B能够做自己的事情......
 	 */
  public:
 	virtual ~AbstractProductB(){};
-	virtual std::string UsefulFunctionB() const = 0;
+	virtual std::string UseFuncB() const = 0;
 	/**
-	 * ...but it also can collaborate with the ProductA.
-	 *
-	 * The Abstract Factory makes sure that all products it creates are of the
-	 * same variant and thus, compatible.
+	 * ...但它也可以与 ProductA 协作。抽象工厂确保它创建的所有产品都具有相同的变体，因此是兼容的。
 	 */
-	virtual std::string AnotherUsefulFunctionB(const AbstractProductA &collaborator) const = 0;
+	virtual std::string AnotherUseFuncB(const AbstractProductA &collaborator) const = 0;
 };
 
 /**
@@ -54,7 +49,7 @@ class AbstractProductB {
  */
 class ConcreteProductB1 : public AbstractProductB {
  public:
-	std::string UsefulFunctionB() const override {
+	std::string UseFuncB() const override {
 		return "The result of the product B1.";
 	}
 	/**
@@ -62,15 +57,15 @@ class ConcreteProductB1 : public AbstractProductB {
 	 * Product A1. Nevertheless, it accepts any instance of AbstractProductA as an
 	 * argument.
 	 */
-	std::string AnotherUsefulFunctionB(const AbstractProductA &collaborator) const override {
-		const std::string result = collaborator.UsefulFunctionA();
+	std::string AnotherUseFuncB(const AbstractProductA &collaborator) const override {
+		const std::string result = collaborator.UseFuncA();
 		return "The result of the B1 collaborating with ( " + result + " )";
 	}
 };
 
 class ConcreteProductB2 : public AbstractProductB {
  public:
-	std::string UsefulFunctionB() const override {
+	std::string UseFuncB() const override {
 		return "The result of the product B2.";
 	}
 	/**
@@ -78,8 +73,8 @@ class ConcreteProductB2 : public AbstractProductB {
 	 * Product A2. Nevertheless, it accepts any instance of AbstractProductA as an
 	 * argument.
 	 */
-	std::string AnotherUsefulFunctionB(const AbstractProductA &collaborator) const override {
-		const std::string result = collaborator.UsefulFunctionA();
+	std::string AnotherUseFuncB(const AbstractProductA &collaborator) const override {
+		const std::string result = collaborator.UseFuncA();
 		return "The result of the B2 collaborating with ( " + result + " )";
 	}
 };
@@ -136,8 +131,8 @@ class ConcreteFactory2 : public AbstractFactory {
 void ClientCode(const AbstractFactory &factory) {
 	const AbstractProductA *product_a = factory.CreateProductA();
 	const AbstractProductB *product_b = factory.CreateProductB();
-	std::cout << product_b->UsefulFunctionB() << "\n";
-	std::cout << product_b->AnotherUsefulFunctionB(*product_a) << "\n";
+	std::cout << product_b->UseFuncB() << "\n";
+	std::cout << product_b->AnotherUseFuncB(*product_a) << "\n";
 	delete product_a;
 	delete product_b;
 }
