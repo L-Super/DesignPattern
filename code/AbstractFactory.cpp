@@ -8,7 +8,9 @@
  */
 class AbstractProductA {
  public:
-	virtual ~AbstractProductA(){};
+	virtual ~AbstractProductA()
+	{
+	};
 	virtual std::string UseFuncA() const = 0;
 };
 
@@ -17,13 +19,15 @@ class AbstractProductA {
  */
 class ConcreteProductA1 : public AbstractProductA {
  public:
-	std::string UseFuncA() const override {
+	std::string UseFuncA() const override
+	{
 		return "The product A1.";
 	}
 };
 
 class ConcreteProductA2 : public AbstractProductA {
-	std::string UseFuncA() const override {
+	std::string UseFuncA() const override
+	{
 		return "The product A2.";
 	}
 };
@@ -36,12 +40,14 @@ class AbstractProductB {
 	 * 产品B能够做自己的事情......
 	 */
  public:
-	virtual ~AbstractProductB(){};
+	virtual ~AbstractProductB()
+	{
+	};
 	virtual std::string UseFuncB() const = 0;
 	/**
 	 * ...但它也可以与 ProductA 协作。抽象工厂确保它创建的所有产品都具有相同的变体，因此是兼容的。
 	 */
-	virtual std::string AnotherUseFuncB(const AbstractProductA &collaborator) const = 0;
+	virtual std::string AnotherUseFuncB(const AbstractProductA& collaborator) const = 0;
 };
 
 /**
@@ -49,13 +55,15 @@ class AbstractProductB {
  */
 class ConcreteProductB1 : public AbstractProductB {
  public:
-	std::string UseFuncB() const override {
+	std::string UseFuncB() const override
+	{
 		return "The product B1.";
 	}
 	/**
 	 * Product B1只能够正确地与Product A1一起工作。然而，它接受任何 AbstractProductA 实例作为参数。
 	 */
-	std::string AnotherUseFuncB(const AbstractProductA &collaborator) const override {
+	std::string AnotherUseFuncB(const AbstractProductA& collaborator) const override
+	{
 		const std::string result = collaborator.UseFuncA();
 		return "The result of the B1 collaborating with ( " + result + " )";
 	}
@@ -63,13 +71,15 @@ class ConcreteProductB1 : public AbstractProductB {
 
 class ConcreteProductB2 : public AbstractProductB {
  public:
-	std::string UseFuncB() const override {
+	std::string UseFuncB() const override
+	{
 		return "The product B2.";
 	}
 	/**
 	 * Product B2只能够正确地与 Product A2一起工作。然而，它接受任何 AbstractProductA 实例作为参数。
 	 */
-	std::string AnotherUseFuncB(const AbstractProductA &collaborator) const override {
+	std::string AnotherUseFuncB(const AbstractProductA& collaborator) const override
+	{
 		const std::string result = collaborator.UseFuncA();
 		return "The result of the B2 collaborating with ( " + result + " )";
 	}
@@ -81,8 +91,8 @@ class ConcreteProductB2 : public AbstractProductB {
  */
 class AbstractFactory {
  public:
-	virtual AbstractProductA *CreateProductA() const = 0;
-	virtual AbstractProductB *CreateProductB() const = 0;
+	virtual AbstractProductA* CreateProductA() const = 0;
+	virtual AbstractProductB* CreateProductB() const = 0;
 };
 
 /**
@@ -90,10 +100,12 @@ class AbstractFactory {
  */
 class ConcreteFactory1 : public AbstractFactory {
  public:
-	AbstractProductA *CreateProductA() const override {
+	AbstractProductA* CreateProductA() const override
+	{
 		return new ConcreteProductA1();
 	}
-	AbstractProductB *CreateProductB() const override {
+	AbstractProductB* CreateProductB() const override
+	{
 		return new ConcreteProductB1();
 	}
 };
@@ -103,10 +115,12 @@ class ConcreteFactory1 : public AbstractFactory {
  */
 class ConcreteFactory2 : public AbstractFactory {
  public:
-	AbstractProductA *CreateProductA() const override {
+	AbstractProductA* CreateProductA() const override
+	{
 		return new ConcreteProductA2();
 	}
-	AbstractProductB *CreateProductB() const override {
+	AbstractProductB* CreateProductB() const override
+	{
 		return new ConcreteProductB2();
 	}
 };
@@ -115,23 +129,25 @@ class ConcreteFactory2 : public AbstractFactory {
  * 客户端代码仅通过抽象类型处理工厂和产品：AbstractFactory 和 AbstractProduct。这使您可以将任何工厂或产品子类传递给客户端代码，而不会破坏它。
  */
 
-void ClientCode(const AbstractFactory &factory) {
-	const AbstractProductA *product_a = factory.CreateProductA();
-	const AbstractProductB *product_b = factory.CreateProductB();
+void ClientCode(const AbstractFactory& factory)
+{
+	const AbstractProductA* product_a = factory.CreateProductA();
+	const AbstractProductB* product_b = factory.CreateProductB();
 	std::cout << product_b->UseFuncB() << "\n";
 	std::cout << product_b->AnotherUseFuncB(*product_a) << "\n";
 	delete product_a;
 	delete product_b;
 }
 
-int main() {
+int main()
+{
 	std::cout << "Client: Testing client code with the first factory type:\n";
-	ConcreteFactory1 *f1 = new ConcreteFactory1();
+	ConcreteFactory1* f1 = new ConcreteFactory1();
 	ClientCode(*f1);
 	delete f1;
-	std::cout << std::endl;
+	std::cout << "-------------------------------------------------------------------" << std::endl;
 	std::cout << "Client: Testing the same client code with the second factory type:\n";
-	ConcreteFactory2 *f2 = new ConcreteFactory2();
+	ConcreteFactory2* f2 = new ConcreteFactory2();
 	ClientCode(*f2);
 	delete f2;
 	return 0;
