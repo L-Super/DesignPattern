@@ -112,9 +112,7 @@ class ConcreteFactory2 : public AbstractFactory {
 };
 
 /**
- * The client code works with factories and products only through abstract
- * types: AbstractFactory and AbstractProduct. This lets you pass any factory or
- * product subclass to the client code without breaking it.
+ * 客户端代码仅通过抽象类型处理工厂和产品：AbstractFactory 和 AbstractProduct。这使您可以将任何工厂或产品子类传递给客户端代码，而不会破坏它。
  */
 
 void ClientCode(const AbstractFactory &factory) {
