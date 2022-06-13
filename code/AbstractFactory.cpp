@@ -99,7 +99,7 @@ class ConcreteFactory1 : public AbstractFactory {
 };
 
 /**
- * Each Concrete Factory has a corresponding product variant.
+ * 每个Concrete Factory工厂都有相应的产品变体。
  */
 class ConcreteFactory2 : public AbstractFactory {
  public:
