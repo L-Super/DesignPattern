@@ -76,12 +76,8 @@ class ConcreteProductB2 : public AbstractProductB {
 };
 
 /**
- * The Abstract Factory interface declares a set of methods that return
- * different abstract products. These products are called a family and are
- * related by a high-level theme or concept. Products of one family are usually
- * able to collaborate among themselves. A family of products may have several
- * variants, but the products of one variant are incompatible with products of
- * another.
+ * 抽象工厂接口声明了一组返回不同抽象产品的方法。这些产品被称为一个系列，并通过一个高层次的主题或概念相关联。一个系列的产品通常能够相互合作。
+ * 一个产品系列可能有几个变体，但是一个变体的产品与另一个变体的产品是不兼容的。
  */
 class AbstractFactory {
  public:
@@ -90,10 +86,7 @@ class AbstractFactory {
 };
 
 /**
- * Concrete Factories produce a family of products that belong to a single
- * variant. The factory guarantees that resulting products are compatible. Note
- * that signatures of the Concrete Factory's methods return an abstract product,
- * while inside the method a concrete product is instantiated.
+ * 具体工厂生产属于单一变体的产品系列。工厂保证产品的兼容性。请注意，Concrete Factory 方法返回一个抽象产品，而在方法内部实例化一个具体产品。
  */
 class ConcreteFactory1 : public AbstractFactory {
  public:
