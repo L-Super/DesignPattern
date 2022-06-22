@@ -46,7 +46,7 @@ include_directories(${SPDLOGDIR}/include)
 include(FetchContent)
 # FetchContent_Declare(<name> <contentOptions>...): 描述如何下载依赖库，name 声明下载库的名称，contentOptions 描述获取、更新外部库的方式
 FetchContent_Declare(fmt URL https://github.com/fmtlib/fmt/archive/refs/tags/8.1.1.tar.gz)
-FetchContent_MakeAvailable(fmt) #构建FetchContent_Declare所声明的name，即fmt
+FetchContent_MakeAvailable(fmt) #构建FetchContent_Declare所声明的name，即fmt。将库的声明与实际的下载分离，利于项目管理和维护。
 
 add_executable(${PROJECT_NAME} ${SRC})
 
