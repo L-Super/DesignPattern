@@ -5,4 +5,10 @@
 #include <string>
 #include <list>
 
-class O
+class BaseObserver {
+ public:
+	virtual ~BaseObserver() = default;
+	virtual void update() = 0;
+};
+
+class Base
