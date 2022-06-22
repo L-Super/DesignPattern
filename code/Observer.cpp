@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <list>
+#include <algorithm>
 
 class BaseObserver {
  public:
@@ -35,6 +36,9 @@ class Subject:public BaseSubject{
 
 	void Detach(BaseObserver *observer) override{
 		observerList.remove(observer);
+	}
+	void Notify() override{
+		std::for_each(observerList.begin(),observerList.end(),[](){})
 	}
  private:
 	std::string msg;
