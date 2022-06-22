@@ -78,7 +78,7 @@ class Subject : public BaseSubject {
 
 class Observer : public BaseObserver {
  public:
-	Observer(std::shared_ptr<Subject> s)
+	Observer(Subject* s)
 		: subject(std::make_shared<Subject>(s))
 	{
 		this->subject->Attach(this);
