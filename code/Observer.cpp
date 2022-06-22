@@ -69,10 +69,12 @@ class Subject:public BaseSubject{
 
 class Observer:public BaseObserver{
  public:
-	Observer(Subject& subject)
-		: subject_(subject)
+	Observer(Subject& s)
+		: subject(s)
 	{
-
+		this->subject.Attach(this);
+		std::cout << "I'm the Observer \"" << ++Observer::staticNumber<< "\".\n";
+		this->number_ = Observer::staticNumber;
 	}
 	virtual ~Observer()
 	{std::cout<<"Observer destructor"<<std::endl;
@@ -80,7 +82,7 @@ class Observer:public BaseObserver{
 
  private:
 	std::string msgFromSubject_;
-	Subject &subject_;
+	Subject subject;
 	static int staticNumber;
 	int number_;
 };
