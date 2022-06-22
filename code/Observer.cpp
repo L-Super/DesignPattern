@@ -11,4 +11,11 @@ class BaseObserver {
 	virtual void update() = 0;
 };
 
-class Base
+class BaseSubject{
+ public:
+	virtual ~BaseSubject() = default;
+	virtual void Attach(BaseObserver *observer) = 0;
+	virtual void Detach(BaseObserver *observer) = 0;
+	virtual void Notify() = 0;
+};
+
