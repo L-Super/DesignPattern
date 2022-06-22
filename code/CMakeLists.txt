@@ -7,7 +7,8 @@ set(SRC
 #        main.cpp
 #        Flyweight.cpp
 #        Factory.cpp
-        AbstractFactory.cpp
+#        AbstractFactory.cpp
+        Observer.cpp
         )
 
 set(INCLUDEDIR ${CMAKE_SOURCE_DIR}/include)
