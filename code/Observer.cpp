@@ -68,7 +68,7 @@ class Subject : public BaseSubject {
 		std::cout << "I'm about to do some thing important\n";
 	}
  private:
-	int ObserverNums()
+	size_t ObserverNums()
 	{
 		std::cout << "There are " << observerList.size() << " observers in the list\n";
 		return observerList.size();
@@ -125,15 +125,15 @@ void ClientCode()
 
 	std::shared_ptr<Observer> observer4(new Observer());
 
-	fmt::print("smartptr count {}",subject.use_count());
+	fmt::print("Smart ptr count {}\n",subject.use_count());
 	subject->CreateMessage("Hello World! :D");
 	subject->Attach(observer4.get());//也可以直接使用subject Attach
-	fmt::print("smartptr count {}",subject.use_count());
+	fmt::print("Smart ptr count {}\n",subject.use_count());
 
 	observer1->RemoveMeFromList();//自己remove
 	subject->Detach(observer2.get());//subject remove
 	subject->CreateMessage("The weather is hot today! :p");
-	fmt::print("smartptr count {}",subject.use_count());
+	fmt::print("Smart ptr count {}\n",subject.use_count());
 
 }
 
