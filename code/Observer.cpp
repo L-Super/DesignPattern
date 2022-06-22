@@ -41,6 +41,7 @@ class Subject : public BaseSubject {
 
 	void Detach(BaseObserver* observer) override
 	{
+		std::cout << "Detach observer:" << &observer << std::endl;
 		observerList.remove(observer);
 	}
 	void Notify() override
@@ -117,29 +118,20 @@ int Observer::staticNumber = 0;
 void ClientCode()
 {
 	std::shared_ptr<Subject> subject = std::make_shared<Subject>();
-	auto observer1 = std::make_shared<Observer>(subject);
+	auto observer1 = std::make_shared<Observer>(subject);//初始化observer时Attach
 	auto observer2 = std::make_shared<Observer>(subject);
 	auto observer3 = std::make_shared<Observer>(subject);
 
 	Observer observer4;
-	Observer* observer5;
+	std::shared_ptr<Observer> observer5(new Observer());
 
 	subject->CreateMessage("Hello World! :D");
-	subject->Attach(&observer4);
-//	observer3->RemoveMeFromList();
-//
-//	subject->Attach(&observer4);
+	subject->Attach(&observer4);//也可以直接使用subject Attach
+	subject->Attach(observer5.get());
+	observer3->RemoveMeFromList();//自己remove
+	subject->Detach(observer2.get());//subject remove
 	subject->CreateMessage("The weather is hot today! :p");
-//
-//
-//	observer2->RemoveMeFromList();
-//	observer5 = new Observer(*subject);
-//
-//	subject->CreateMessage("My new car is great! ;)");
-//	observer5->RemoveMeFromList();
-//
-//	observer4->RemoveMeFromList();
-//	observer1->RemoveMeFromList();
+
 }
 
 int main()
