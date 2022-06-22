@@ -53,7 +53,7 @@ class Subject:public BaseSubject{
 	 * 通常，订阅逻辑只是 Subject 真正可以做的一小部分。Subjects通常包含一些重要的业务逻辑，当重要的事情即将发生（或之后）时，它会触发通知方法。
 	 */
 	void SomeBusinessLogic() {
-		this->msg = "change message message";
+		this->msg = "change message";
 		Notify();
 		std::cout << "I'm about to do some thing important\n";
 	}
@@ -65,4 +65,22 @@ class Subject:public BaseSubject{
  private:
 	std::string msg;
 	std::list<BaseObserver*> observerList;
+};
+
+class Observer:public BaseObserver{
+ public:
+	Observer(Subject& subject)
+		: subject_(subject)
+	{
+
+	}
+	virtual ~Observer()
+	{std::cout<<"Observer destructor"<<std::endl;
+	}
+
+ private:
+	std::string msgFromSubject_;
+	Subject &subject_;
+	static int staticNumber;
+	int number_;
 };
