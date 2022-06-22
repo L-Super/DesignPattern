@@ -68,7 +68,7 @@ class Subject : public BaseSubject {
  private:
 	int ObserverNums()
 	{
-		std::cout << " There are " << observerList.size() << " observers in the list\n";
+		std::cout << "There are " << observerList.size() << " observers in the list\n";
 		return observerList.size();
 	}
  private:
@@ -120,23 +120,24 @@ void ClientCode()
 	auto observer2 = std::make_shared<Observer>(*subject);
 	auto observer3 = std::make_shared<Observer>(*subject);
 
-	Observer* observer4;
+//	Observer observer4;
 	Observer* observer5;
 
 	subject->CreateMessage("Hello World! :D");
-	observer3->RemoveMeFromList();
-
-	subject->CreateMessage("The weather is hot today! :p");
-	observer4 = new Observer(*subject);
-
-	observer2->RemoveMeFromList();
-	observer5 = new Observer(*subject);
-
-	subject->CreateMessage("My new car is great! ;)");
-	observer5->RemoveMeFromList();
-
-	observer4->RemoveMeFromList();
-	observer1->RemoveMeFromList();
+//	observer3->RemoveMeFromList();
+//
+//	subject->Attach(&observer4);
+//	subject->CreateMessage("The weather is hot today! :p");
+//
+//
+//	observer2->RemoveMeFromList();
+//	observer5 = new Observer(*subject);
+//
+//	subject->CreateMessage("My new car is great! ;)");
+//	observer5->RemoveMeFromList();
+//
+//	observer4->RemoveMeFromList();
+//	observer1->RemoveMeFromList();
 }
 
 int main()
