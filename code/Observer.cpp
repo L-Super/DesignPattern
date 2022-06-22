@@ -8,7 +8,7 @@
 class BaseObserver {
  public:
 	virtual ~BaseObserver() = default;
-	virtual void update() = 0;
+	virtual void update(const std::string& msgFromSubject) = 0;
 };
 
 class BaseSubject{
@@ -19,3 +19,11 @@ class BaseSubject{
 	virtual void Notify() = 0;
 };
 
+/**
+ * Subject 拥有一些重要的状态，并在状态更改时通知观察者。
+ */
+class Subject:public BaseSubject{
+ public:
+	virtual ~Subject() {std::cout<<"Subject "}
+
+};
