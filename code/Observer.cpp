@@ -78,10 +78,10 @@ class Subject : public BaseSubject {
 
 class Observer : public BaseObserver {
  public:
-	Observer(Subject& s)
+	Observer(std::shared_ptr<Subject> s)
 		: subject(s)
 	{
-		this->subject.Attach(this);
+		this->subject->Attach(this);
 		std::cout << "I'm the Observer \"" << ++Observer::staticNumber << "\".\n";
 		this->number = Observer::staticNumber;
 	}
@@ -106,7 +106,7 @@ class Observer : public BaseObserver {
 	}
  private:
 	std::string msgFromSubject;
-	Subject &subject;
+	std::shared_ptr<Subject> subject;
 	static int staticNumber;
 	int number;
 };
@@ -116,9 +116,9 @@ int Observer::staticNumber = 0;
 void ClientCode()
 {
 	std::shared_ptr<Subject> subject = std::make_shared<Subject>();
-	auto observer1 = std::make_shared<Observer>(*subject);
-	auto observer2 = std::make_shared<Observer>(*subject);
-	auto observer3 = std::make_shared<Observer>(*subject);
+	auto observer1 = std::make_shared<Observer>(subject);
+	auto observer2 = std::make_shared<Observer>(subject);
+	auto observer3 = std::make_shared<Observer>(subject);
 
 //	Observer observer4;
 	Observer* observer5;
