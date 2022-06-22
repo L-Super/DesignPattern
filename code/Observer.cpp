@@ -122,16 +122,13 @@ void ClientCode()
 	auto observer2 = std::make_shared<Observer>(subject);
 	auto observer3 = std::make_shared<Observer>(subject);
 
-	Observer observer4;
-	std::shared_ptr<Observer> observer5(new Observer());
+	std::shared_ptr<Observer> observer4(new Observer());
 
 	subject->CreateMessage("Hello World! :D");
-	subject->Attach(&observer4);//也可以直接使用subject Attach
-	subject->Attach(observer5.get());
-	observer3->RemoveMeFromList();//自己remove
+	subject->Attach(observer4.get());//也可以直接使用subject Attach
+	observer1->RemoveMeFromList();//自己remove
 	subject->Detach(observer2.get());//subject remove
 	subject->CreateMessage("The weather is hot today! :p");
-
 }
 
 int main()
