@@ -38,7 +38,29 @@ class Subject:public BaseSubject{
 		observerList.remove(observer);
 	}
 	void Notify() override{
-		std::for_each(observerList.begin(),observerList.end(),[](){})
+		ObserverNums();
+		for(auto it:observerList)
+		{
+			it->update(msg);
+		}
+	}
+	void CreateMessage(const std::string& message = "empty")
+	{
+		this->msg = message;
+		Notify();
+	}
+	/**
+	 * 通常，订阅逻辑只是 Subject 真正可以做的一小部分。Subjects通常包含一些重要的业务逻辑，当重要的事情即将发生（或之后）时，它会触发通知方法。
+	 */
+	void SomeBusinessLogic() {
+		this->msg = "change message message";
+		Notify();
+		std::cout << "I'm about to do some thing important\n";
+	}
+ private:
+	int ObserverNums(){
+		std::cout<<" There are "<<observerList.size()<<" observers in the list\n";
+		return observerList.size();
 	}
  private:
 	std::string msg;
