@@ -106,7 +106,7 @@ class Observer : public BaseObserver {
 	}
  private:
 	std::string msgFromSubject;
-	Subject subject;
+	Subject &subject;
 	static int staticNumber;
 	int number;
 };
