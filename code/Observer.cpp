@@ -6,6 +6,7 @@
 #include <list>
 #include <algorithm>
 #include <memory>
+#include "fmt/format.h"
 
 class BaseObserver {
  public:
@@ -124,12 +125,16 @@ void ClientCode()
 
 	std::shared_ptr<Observer> observer4(new Observer());
 
-	subject.use_count();
+	fmt::print("smartptr count {}",subject.use_count());
 	subject->CreateMessage("Hello World! :D");
 	subject->Attach(observer4.get());//也可以直接使用subject Attach
+	fmt::print("smartptr count {}",subject.use_count());
+
 	observer1->RemoveMeFromList();//自己remove
 	subject->Detach(observer2.get());//subject remove
 	subject->CreateMessage("The weather is hot today! :p");
+	fmt::print("smartptr count {}",subject.use_count());
+
 }
 
 int main()
