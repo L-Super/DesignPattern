@@ -9,7 +9,7 @@
 class BaseObserver {
  public:
 	virtual ~BaseObserver() = default;
-	virtual void update(const std::string& msgFromSubject) = 0;
+	virtual void Update(const std::string& msgFromSubject) = 0;
 };
 
 class BaseSubject{
@@ -41,7 +41,7 @@ class Subject:public BaseSubject{
 		ObserverNums();
 		for(auto it:observerList)
 		{
-			it->update(msg);
+			it->Update(msg);
 		}
 	}
 	void CreateMessage(const std::string& message = "empty")
@@ -74,15 +74,25 @@ class Observer:public BaseObserver{
 	{
 		this->subject.Attach(this);
 		std::cout << "I'm the Observer \"" << ++Observer::staticNumber<< "\".\n";
-		this->number_ = Observer::staticNumber;
+		this->number = Observer::staticNumber;
 	}
 	virtual ~Observer()
 	{std::cout<<"Observer destructor"<<std::endl;
 	}
-
+	void Update(const std::string &messageFromSubject) override{
+		this->msgFromSubject = messageFromSubject;
+		PrintInfo();
+	}
+	void RemoveMeFromList() {
+		subject.Detach(this);
+		std::cout << "Observer \"" << number << "\" removed from the list.\n";
+	}
+	void PrintInfo() {
+		std::cout << "Observer \"" << this->number << "\": a new message is available --> " << this->msgFromSubject << "\n";
+	}
  private:
-	std::string msgFromSubject_;
+	std::string msgFromSubject;
 	Subject subject;
 	static int staticNumber;
-	int number_;
+	int number;
 };
