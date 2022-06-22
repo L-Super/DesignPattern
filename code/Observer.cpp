@@ -78,6 +78,7 @@ class Subject : public BaseSubject {
 
 class Observer : public BaseObserver {
  public:
+	Observer() = default;
 	Observer(std::shared_ptr<Subject> s)
 		: subject(s)
 	{
@@ -120,11 +121,11 @@ void ClientCode()
 	auto observer2 = std::make_shared<Observer>(subject);
 	auto observer3 = std::make_shared<Observer>(subject);
 
-	Observer* observer4;
+	Observer observer4;
 	Observer* observer5;
 
 	subject->CreateMessage("Hello World! :D");
-	subject->Attach(observer4);
+	subject->Attach(&observer4);
 //	observer3->RemoveMeFromList();
 //
 //	subject->Attach(&observer4);
