@@ -24,6 +24,19 @@ class BaseSubject{
  */
 class Subject:public BaseSubject{
  public:
-	virtual ~Subject() {std::cout<<"Subject "}
+	virtual ~Subject() {std::cout<<"Subject destructor"<<std::endl;}
+	/**
+	 * 订阅管理方法。
+	 * @param observer
+	 */
+	void Attach(BaseObserver* observer) override{
+		observerList.push_back(observer);
+	}
 
+	void Detach(BaseObserver *observer) override{
+		observerList.remove(observer);
+	}
+ private:
+	std::string msg;
+	std::list<BaseObserver*> observerList;
 };
