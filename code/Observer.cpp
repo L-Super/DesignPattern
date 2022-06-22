@@ -79,7 +79,7 @@ class Subject : public BaseSubject {
 class Observer : public BaseObserver {
  public:
 	Observer(std::shared_ptr<Subject> s)
-		: subject(s)
+		: subject(std::make_shared<Subject>(s))
 	{
 		this->subject->Attach(this);
 		std::cout << "I'm the Observer \"" << ++Observer::staticNumber << "\".\n";
@@ -96,7 +96,7 @@ class Observer : public BaseObserver {
 	}
 	void RemoveMeFromList()
 	{
-		subject.Detach(this);
+		subject->Detach(this);
 		std::cout << "Observer \"" << number << "\" removed from the list.\n";
 	}
 	void PrintInfo()
