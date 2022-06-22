@@ -5,6 +5,7 @@
 #include <string>
 #include <list>
 #include <algorithm>
+#include <memory>
 
 class BaseObserver {
  public:
@@ -96,3 +97,35 @@ class Observer:public BaseObserver{
 	static int staticNumber;
 	int number;
 };
+
+int Observer::staticNumber = 0;
+
+void ClientCode() {
+	std::shared_ptr<Subject> subject = std::make_shared<Subject>();
+	auto observer1 = std::make_shared<Observer>(*subject);
+	auto observer2 = std::make_shared<Observer>(*subject);
+	auto observer3 = std::make_shared<Observer>(*subject);
+	
+	Observer *observer4;
+	Observer *observer5;
+
+	subject->CreateMessage("Hello World! :D");
+	observer3->RemoveMeFromList();
+
+	subject->CreateMessage("The weather is hot today! :p");
+	observer4 = new Observer(*subject);
+
+	observer2->RemoveMeFromList();
+	observer5 = new Observer(*subject);
+
+	subject->CreateMessage("My new car is great! ;)");
+	observer5->RemoveMeFromList();
+
+	observer4->RemoveMeFromList();
+	observer1->RemoveMeFromList();
+}
+
+int main() {
+	ClientCode();
+	return 0;
+}
