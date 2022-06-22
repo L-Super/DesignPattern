@@ -124,6 +124,7 @@ void ClientCode()
 
 	std::shared_ptr<Observer> observer4(new Observer());
 
+	subject.use_count();
 	subject->CreateMessage("Hello World! :D");
 	subject->Attach(observer4.get());//也可以直接使用subject Attach
 	observer1->RemoveMeFromList();//自己remove

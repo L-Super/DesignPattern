@@ -40,7 +40,16 @@ if (NOT EXISTS ${SPDLOGDIR})
 #    message(STATUS "Git result = ${GIT_RESULT} Git output = ${GIT_OUTPUT} Git error = ${GIT_ERROR}")
 endif ()
 
-
 include_directories(${SPDLOGDIR}/include)
 
+#fmt库导入
+include(FetchContent)
+FetchContent_Declare(fmt
+        URL https://github.com/fmtlib/fmt/archive/refs/tags/8.0.1.tar.gz)
+FetchContent_MakeAvailable(fmt)
+
+
+
 add_executable(${PROJECT_NAME} ${SRC})
+
+target_link_libraries(${PROJECT_NAME} fmt)
