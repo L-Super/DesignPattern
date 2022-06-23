@@ -27,7 +27,7 @@ endif ()
 if (NOT EXISTS ${SPDLOGDIR})
     message("spdlog not exists")
 #    execute_process(COMMAND ${CMAKE_COMMAND} -E make_directory ${SPDLOGDIR})
-    execute_process(COMMAND git clone "https://github.com/gabime/spdlog.git"
+    execute_process(COMMAND git submodule add "https://github.com/gabime/spdlog.git"
             WORKING_DIRECTORY ${INCLUDEDIR}
             RESULT_VARIABLE GIT_RESULT
             OUTPUT_VARIABLE GIT_OUTPUT
