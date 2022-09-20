@@ -1,4 +1,5 @@
 {
   "cssTheme": "",
-  "theme": "moonstone"
+  "theme": "obsidian",
+  "monospaceFontFamily": "JetBrainsMono NF,Lucida Console"
 }

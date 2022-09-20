@@ -3,5 +3,6 @@
   "livePreview": true,
   "newLinkFormat": "relative",
   "useMarkdownLinks": true,
-  "attachmentFolderPath": "/image"
+  "attachmentFolderPath": "/image",
+  "communityThemeSortOrder": "release"
 }
