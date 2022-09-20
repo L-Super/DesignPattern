@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "DesignPattern.md",
+            "file": "状态模式.md",
             "mode": "preview",
             "source": false
           }
@@ -69,7 +69,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "DesignPattern.md",
+                "file": "状态模式.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -89,12 +89,12 @@
   },
   "active": "11dab30283307b47",
   "lastOpenFiles": [
+    "DesignPattern.md",
     "工厂方法.md",
     "抽象工厂.md",
     "观察者模式.md",
     "观察者模式.assets/structure.png",
     "image/factory.png",
-    "DesignPattern.md",
     "code/include/spdlog/README.md",
     "DesignPattern1.md"
   ]
