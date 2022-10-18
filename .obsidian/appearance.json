@@ -1,5 +1,6 @@
 {
   "cssTheme": "",
   "theme": "obsidian",
-  "monospaceFontFamily": "JetBrainsMono NF,Lucida Console"
+  "monospaceFontFamily": "JetBrainsMono NF,Lucida Console",
+  "accentColor": ""
 }
