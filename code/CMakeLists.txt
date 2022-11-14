@@ -10,7 +10,8 @@ set(SRC
 #        AbstractFactory.cpp
 #        Observer.cpp
 #        State.cpp
-        Builder.cpp)
+#        Builder.cpp
+        Proxy.cpp)
 
 #set(INCLUDEDIR ${CMAKE_SOURCE_DIR}/include)
 #if (NOT EXISTS ${INCLUDE})
