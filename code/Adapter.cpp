@@ -6,7 +6,7 @@
 #include <algorithm>
 
 /**
- * The Target defines the domain-specific interface used by the client code.
+ * Target定义客户端代码使用的特定于域的接口
  */
 class Target {
 public:
@@ -18,9 +18,7 @@ public:
 };
 
 /**
- * The Adaptee contains some useful behavior, but its interface is incompatible
- * with the existing client code. The Adaptee needs some adaptation before the
- * client code can use it.
+ * Adaptee 包含一些有用的行为，但其接口与现有客户端代码不兼容。在客户端代码可以使用它之前，Adaptee 需要进行一些调整。
  */
 class Adaptee {
 public:
@@ -30,8 +28,7 @@ public:
 };
 
 /**
- * The Adapter makes the Adaptee's interface compatible with the Target's
- * interface.
+ * Adapter使Adaptee的接口与Target的接口兼容。
  */
 class Adapter : public Target {
 private:
@@ -47,7 +44,7 @@ public:
 };
 
 /**
- * The client code supports all classes that follow the Target interface.
+ * 客户端代码支持遵循 Target 接口的所有类。
  */
 void ClientCode(const Target *target) {
     std::cout << target->Request();
