@@ -11,7 +11,7 @@ set(SRC
 #        Observer.cpp
 #        State.cpp
 #        Builder.cpp
-        Proxy.cpp)
+        Proxy.cpp Adapter.cpp)
 
 #set(INCLUDEDIR ${CMAKE_SOURCE_DIR}/include)
 #if (NOT EXISTS ${INCLUDE})
@@ -47,7 +47,8 @@ set(SRC
 # fmt库通过FetchContent导入
 include(FetchContent)
 # FetchContent_Declare(<name> <contentOptions>...): 下载依赖库，name 声明下载库的名称，contentOptions 描述获取、更新外部库的方式
-FetchContent_Declare(fmt URL https://github.com/fmtlib/fmt/archive/refs/tags/9.1.0.zip)
+FetchContent_Declare(fmt URL https://github.com/fmtlib/fmt/archive/refs/tags/9.1.0.zip
+        DOWNLOAD_EXTRACT_TIMESTAMP true)
 FetchContent_MakeAvailable(fmt) #构建FetchContent_Declare所声明的name，即fmt。将库的声明与实际的下载分离，利于项目管理和维护。
 
 add_executable(${PROJECT_NAME} ${SRC})
