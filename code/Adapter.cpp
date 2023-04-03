@@ -43,6 +43,38 @@ public:
     }
 };
 
+//// 多重继承方式
+///**
+// * The Target defines the domain-specific interface used by the client code.
+// */
+//class Target {
+//public:
+//    virtual ~Target() = default;
+//    virtual std::string Request() const {
+//        return "Target: The default target's behavior.";
+//    }
+//};
+//
+//class Adaptee {
+//public:
+//    std::string SpecificRequest() const {
+//        return ".eetpadA eht fo roivaheb laicepS";
+//    }
+//};
+//
+///**
+// * Adapter使用多重继承使适配对象Adaptee的接口与Target接口兼容。
+// */
+//class Adapter : public Target, public Adaptee {
+//public:
+//    Adapter() {}
+//    std::string Request() const override {
+//        std::string to_reverse = SpecificRequest();
+//        std::reverse(to_reverse.begin(), to_reverse.end());
+//        return "Adapter: (TRANSLATED) " + to_reverse;
+//    }
+//};
+
 /**
  * 客户端代码支持遵循 Target 接口的所有类。
  */
@@ -70,3 +102,6 @@ int main() {
 
     return 0;
 }
+
+
+
