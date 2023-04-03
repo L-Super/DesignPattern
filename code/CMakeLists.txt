@@ -11,7 +11,8 @@ set(SRC
 #        Observer.cpp
 #        State.cpp
 #        Builder.cpp
-        Proxy.cpp Adapter.cpp)
+#        Proxy.cpp
+        Adapter.cpp)
 
 #set(INCLUDEDIR ${CMAKE_SOURCE_DIR}/include)
 #if (NOT EXISTS ${INCLUDE})
