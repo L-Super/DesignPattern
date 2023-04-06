@@ -12,7 +12,7 @@ set(SRC
 #        State.cpp
 #        Builder.cpp
 #        Proxy.cpp
-        Adapter.cpp TemplateMethod.cpp)
+        Adapter.cpp)
 
 #set(INCLUDEDIR ${CMAKE_SOURCE_DIR}/include)
 #if (NOT EXISTS ${INCLUDE})
@@ -55,3 +55,6 @@ FetchContent_MakeAvailable(fmt) #构建FetchContent_Declare所声明的name，�
 add_executable(${PROJECT_NAME} ${SRC})
 
 target_link_libraries(${PROJECT_NAME} fmt)
+
+# TemplateMethod
+add_executable(TemplateMethod TemplateMethod.cpp)

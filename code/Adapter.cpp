@@ -1,6 +1,6 @@
 //
 // Created by Listening on 2023/4/3.
-//
+// 适配器模式
 #include <iostream>
 #include <string>
 #include <algorithm>
