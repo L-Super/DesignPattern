@@ -4,16 +4,12 @@
 #include <iostream>
 
 /**
- * The Abstract Class defines a template method that contains a skeleton of some
- * algorithm, composed of calls to (usually) abstract primitive operations.
- *
- * Concrete subclasses should implement these operations, but leave the template
- * method itself intact.
- * 抽象类定义了一个模板方法，该方法包含某种算法的框架，由对（通常）抽象基元操作的调用组成。具体子类应实现这些操作，但保持模板方法本身不变。
+ * 抽象类定义了一个模板方法，该方法包含某种算法的框架，由对（通常）抽象基元操作的调用组成。
+ * 具体子类应实现这些操作，但保持模板方法本身不变。
  */
 class AbstractClass {
     /**
-     * The template method defines the skeleton of an algorithm.
+     * 模板方法定义算法的框架。
      */
 public:
     void TemplateMethod() const {
@@ -26,7 +22,7 @@ public:
         this->Hook2();
     }
     /**
-     * These operations already have implementations.
+     * 这些操作已经实现。
      */
 protected:
     void BaseOperation1() const {
@@ -39,22 +35,18 @@ protected:
         std::cout << "AbstractClass says: But I am doing the bulk of the work anyway\n";
     }
     /**
-     * These operations have to be implemented in subclasses.
+     * 这些操作必须在子类中实现。
      */
     virtual void RequiredOperations1() const = 0;
     virtual void RequiredOperation2() const = 0;
     /**
-     * These are "hooks." Subclasses may override them, but it's not mandatory
-     * since the hooks already have default (but empty) implementation. Hooks
-     * provide additional extension points in some crucial places of the
-     * algorithm.
+     * 这些是“钩子”。子类可以覆盖它们，但这不是强制性的，因为钩子已经有默认（但为空）的实现。钩子在算法的一些关键位置提供了额外的扩展点。
      */
     virtual void Hook1() const {}
     virtual void Hook2() const {}
 };
 /**
- * Concrete classes have to implement all abstract operations of the base class.
- * They can also override some operations with a default implementation.
+ * 具体类必须实现基类的所有抽象操作。它们还可以使用默认实现覆盖某些操作。
  */
 class ConcreteClass1 : public AbstractClass {
 protected:
@@ -66,7 +58,7 @@ protected:
     }
 };
 /**
- * Usually, concrete classes override only a fraction of base class' operations.
+ * 通常，具体类仅覆盖基类操作的一小部分。
  */
 class ConcreteClass2 : public AbstractClass {
 protected:
@@ -81,9 +73,7 @@ protected:
     }
 };
 /**
- * The client code calls the template method to execute the algorithm. Client
- * code does not have to know the concrete class of an object it works with, as
- * long as it works with objects through the interface of their base class.
+ * 客户端代码调用模板方法来执行算法。客户端代码不必知道它所处理的对象的具体类，只要它通过其基类的接口处理对象即可。
  */
 void ClientCode(AbstractClass *class_) {
     // ...
