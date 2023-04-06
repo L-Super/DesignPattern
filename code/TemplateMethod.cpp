@@ -2,6 +2,7 @@
 // Created by Listening on 2023/4/6.
 // 模板方法
 #include <iostream>
+#include <memory>
 
 /**
  * 抽象类定义了一个模板方法，该方法包含某种算法的框架，由对（通常）抽象基元操作的调用组成。
@@ -83,13 +84,13 @@ void ClientCode(AbstractClass *class_) {
 
 int main() {
     std::cout << "Same client code can work with different subclasses:\n";
-    ConcreteClass1 *concreteClass1 = new ConcreteClass1;
-    ClientCode(concreteClass1);
+    std::unique_ptr<ConcreteClass1> concreteClass1 = std::make_unique<ConcreteClass1>();
+    ClientCode(concreteClass1.get());
+
     std::cout << "\n";
     std::cout << "Same client code can work with different subclasses:\n";
-    ConcreteClass2 *concreteClass2 = new ConcreteClass2;
-    ClientCode(concreteClass2);
-    delete concreteClass1;
-    delete concreteClass2;
+    std::unique_ptr<ConcreteClass2> concreteClass2 = std::make_unique<ConcreteClass2>();
+    ClientCode(concreteClass2.get());
+
     return 0;
 }
