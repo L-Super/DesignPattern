@@ -12,7 +12,7 @@ set(SRC
 #        State.cpp
 #        Builder.cpp
 #        Proxy.cpp
-        Adapter.cpp)
+        Adapter.cpp TemplateMethod.cpp)
 
 #set(INCLUDEDIR ${CMAKE_SOURCE_DIR}/include)
 #if (NOT EXISTS ${INCLUDE})
