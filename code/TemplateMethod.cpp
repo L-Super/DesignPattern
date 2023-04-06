@@ -9,6 +9,7 @@
  *
  * Concrete subclasses should implement these operations, but leave the template
  * method itself intact.
+ * 抽象类定义了一个模板方法，该方法包含某种算法的框架，由对（通常）抽象基元操作的调用组成。具体子类应实现这些操作，但保持模板方法本身不变。
  */
 class AbstractClass {
     /**
