@@ -11,8 +11,7 @@
  *
  * Context使用此接口调用具体策略定义的算法。
  */
-class Strategy
-{
+class Strategy {
 public:
     virtual ~Strategy() = default;
     virtual std::string doAlgorithm(std::string_view data) const = 0;
@@ -21,8 +20,7 @@ public:
 /**
  * Context 定义客户端感兴趣的接口
  */
-class Context
-{
+class Context {
     /**
      * @var Strategy Context 维护对其中一个策略对象的引用。上下文不知道策略的具体类别。它应该通过策略界面与所有策略一起使用。
      */
@@ -61,8 +59,7 @@ public:
 /**
  * 具体策略在遵循基本策略界面的同时实现算法。该接口使它们在上下文中可互换。
  */
-class ConcreteStrategyA : public Strategy
-{
+class ConcreteStrategyA : public Strategy {
 public:
     std::string doAlgorithm(std::string_view data) const override
     {
@@ -72,8 +69,7 @@ public:
         return result;
     }
 };
-class ConcreteStrategyB : public Strategy
-{
+class ConcreteStrategyB : public Strategy {
     std::string doAlgorithm(std::string_view data) const override
     {
         std::string result(data);
