@@ -6,7 +6,6 @@
 #include <list>
 #include <algorithm>
 #include <memory>
-#include "fmt/format.h"
 
 class BaseObserver {
  public:
@@ -119,7 +118,7 @@ int Observer::staticNumber = 0;
 void ClientCode()
 {
 	std::shared_ptr<Subject> subject = std::make_shared<Subject>();
-	fmt::print("Smart ptr count {}\n", subject.use_count());
+	std::cout << "Smart ptr count " << subject.use_count() << "\n";
 
 	auto observer1 = std::make_shared<Observer>(subject);//初始化observer时Attach
 	auto observer2 = std::make_shared<Observer>(subject);
@@ -130,7 +129,7 @@ void ClientCode()
 	subject->CreateMessage("Hello World! :D");
 	subject->Attach(observer4.get());//也可以直接使用subject Attach
 
-	fmt::print("Smart ptr count {}\n", subject.use_count());
+    std::cout << "Smart ptr count " << subject.use_count() << "\n";
 
 	observer1->RemoveMeFromList();//自己remove
 	subject->Detach(observer2.get());//subject remove

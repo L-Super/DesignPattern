@@ -5,7 +5,7 @@
 
 #include <vector>
 #include <string>
-#include "fmt/format.h"
+#include <iostream>
 
 /**
  * 只有当你的产品相当复杂并需要大量配置时，使用生成器模式才有意义。
@@ -18,19 +18,19 @@ class Product1 {
 	std::vector<std::string> parts_;
 	void ListParts() const
 	{
-		fmt::print("Product parts: ");
+		std::cout << "Product parts: ";
 		for (size_t i = 0; i < parts_.size(); i++)
 		{
 			if (parts_[i] == parts_.back())
 			{
-				fmt::print(parts_[i]);
+				std::cout << parts_[i];
 			}
 			else
 			{
-				fmt::print("{}, ", parts_[i]);
+                std::cout << parts_[i] << ", ";
 			}
 		}
-		fmt::print("\n\n");
+        std::cout << "\n\n";
 	}
 };
 
@@ -150,14 +150,14 @@ void ClientCode(Director& director)
 {
 	ConcreteBuilder1* builder = new ConcreteBuilder1();
 	director.SetBuilder(builder);
-	fmt::print("Standard basic product:\n");
+    std::cout << "Standard basic product:\n";
 	director.BuildMinimalViableProduct();
 
 	Product1* p = builder->GetProduct();
 	p->ListParts();
 	delete p;
 
-	fmt::print("Standard full featured product:\n");
+    std::cout << "Standard full featured product:\n";
 	director.BuildFullFeaturedProduct();
 
 	p = builder->GetProduct();
@@ -165,7 +165,7 @@ void ClientCode(Director& director)
 	delete p;
 
 	// 请记住，没有Director类也可以使用Builder模式。
-	fmt::print("Custom product:\n");
+    std::cout << "Custom product:\n";
 	builder->ProducePartA();
 	builder->ProducePartC();
 	p = builder->GetProduct();
