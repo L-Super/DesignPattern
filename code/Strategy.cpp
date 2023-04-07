@@ -28,23 +28,21 @@ class Context
 private:
     std::unique_ptr<Strategy> strategy_;
     /**
-     * Usually, the Context accepts a strategy through the constructor, but also
-     * provides a setter to change it at runtime.
+     * 通常，Context通过构造函数接受策略，但也提供一个setter在运行时更改它。
      */
 public:
     explicit Context(std::unique_ptr<Strategy> &&strategy = {}) : strategy_(std::move(strategy))
     {
     }
     /**
-     * Usually, the Context allows replacing a Strategy object at runtime.
+     * 通常，Context允许在运行时替换策略对象。
      */
     void set_strategy(std::unique_ptr<Strategy> &&strategy)
     {
         strategy_ = std::move(strategy);
     }
     /**
-     * The Context delegates some work to the Strategy object instead of
-     * implementing +multiple versions of the algorithm on its own.
+     * Context将一些工作委托给 Strategy 对象，而不是自行实现算法的 +多个版本。
      */
     void doSomeBusinessLogic() const
     {
