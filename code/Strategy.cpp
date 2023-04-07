@@ -5,6 +5,7 @@
 #include <string>
 #include <memory>
 #include <string_view>
+#include <algorithm>
 /**
  * Strategy接口声明某些算法的所有受支持版本通用的操作。
  *
@@ -50,15 +51,15 @@ public:
             std::cout << "Context: Sorting data using the strategy (not sure how it'll do it)\n";
             std::string result = strategy_->doAlgorithm("aecbd");
             std::cout << result << "\n";
-        } else {
+        }
+        else {
             std::cout << "Context: Strategy isn't set\n";
         }
     }
 };
 
 /**
- * Concrete Strategies implement the algorithm while following the base Strategy
- * interface. The interface makes them interchangeable in the Context.
+ * 具体策略在遵循基本策略界面的同时实现算法。该接口使它们在上下文中可互换。
  */
 class ConcreteStrategyA : public Strategy
 {
@@ -81,12 +82,10 @@ class ConcreteStrategyB : public Strategy
         return result;
     }
 };
-/**
- * The client code picks a concrete strategy and passes it to the context. The
- * client should be aware of the differences between strategies in order to make
- * the right choice.
- */
 
+/**
+ * 客户端代码选取一个具体的策略并将其传递给上下文。客户应该意识到策略之间的差异，以便做出正确的选择。
+ */
 void clientCode()
 {
     Context context(std::make_unique<ConcreteStrategyA>());
