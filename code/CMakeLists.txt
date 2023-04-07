@@ -58,3 +58,5 @@ target_link_libraries(${PROJECT_NAME} fmt)
 
 # TemplateMethod
 add_executable(TemplateMethod TemplateMethod.cpp)
+# Strategy
+add_executable(Strategy Strategy.cpp)
