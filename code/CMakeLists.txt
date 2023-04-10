@@ -26,6 +26,12 @@ add_executable(Proxy Proxy.cpp)
 # Adapter 适配器模式
 add_executable(Adapter Adapter.cpp)
 
+# Flyweight 享元模式
+add_executable(Flyweight Flyweight.cpp)
+
+# Facade 外观模式
+add_executable(Facade Facade.cpp)
+
 #
 # 行为模式
 #
@@ -41,9 +47,3 @@ add_executable(TemplateMethod TemplateMethod.cpp)
 
 # Strategy 策略模式
 add_executable(Strategy Strategy.cpp)
-
-# Flyweight 享元模式
-add_executable(Flyweight Flyweight.cpp)
-
-# Facade 外观模式
-add_executable(Facade Facade.cpp)
