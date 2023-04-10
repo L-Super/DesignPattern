@@ -1,9 +1,9 @@
 //
 // Created by Listening on 2023/4/3.
 // 适配器模式
+#include <algorithm>
 #include <iostream>
 #include <string>
-#include <algorithm>
 
 /**
  * Target定义客户端代码使用的特定于域的接口
@@ -12,9 +12,7 @@ class Target {
 public:
     virtual ~Target() = default;
 
-    virtual std::string Request() const {
-        return "Target: The default target's behavior.";
-    }
+    virtual std::string Request() const { return "Target: The default target's behavior."; }
 };
 
 /**
@@ -22,9 +20,7 @@ public:
  */
 class Adaptee {
 public:
-    std::string SpecificRequest() const {
-        return ".eetpadA eht fo roivaheb laicepS";
-    }
+    std::string SpecificRequest() const { return ".eetpadA eht fo roivaheb laicepS"; }
 };
 
 /**
@@ -37,7 +33,8 @@ private:
 public:
     Adapter(Adaptee *adaptee) : adaptee_(adaptee) {}
 
-    std::string Request() const override {
+    std::string Request() const override
+    {
         std::string to_reverse = this->adaptee_->SpecificRequest();
         std::reverse(to_reverse.begin(), to_reverse.end());
         return "Adapter: (TRANSLATED) " + to_reverse;
@@ -79,11 +76,10 @@ public:
 /**
  * 客户端代码支持遵循 Target 接口的所有类。
  */
-void ClientCode(const Target *target) {
-    std::cout << target->Request();
-}
+void ClientCode(const Target *target) { std::cout << target->Request(); }
 
-int main() {
+int main()
+{
     std::cout << "Client: I can work just fine with the Target objects:\n";
     Target *target = new Target;
     ClientCode(target);
@@ -103,6 +99,3 @@ int main() {
 
     return 0;
 }
-
-
-

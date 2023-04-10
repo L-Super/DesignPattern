@@ -1,11 +1,11 @@
 //
 // Created by Listening on 2023/4/7.
 // 策略模式
-#include <iostream>
-#include <string>
-#include <memory>
-#include <string_view>
 #include <algorithm>
+#include <iostream>
+#include <memory>
+#include <string>
+#include <string_view>
 /**
  * Strategy接口声明某些算法的所有受支持版本通用的操作。
  *
@@ -30,16 +30,11 @@ private:
      * 通常，Context通过构造函数接受策略，但也提供一个setter在运行时更改它。
      */
 public:
-    explicit Context(std::unique_ptr<Strategy> &&strategy = {}) : strategy_(std::move(strategy))
-    {
-    }
+    explicit Context(std::unique_ptr<Strategy> &&strategy = {}) : strategy_(std::move(strategy)) {}
     /**
      * 通常，Context允许在运行时替换策略对象。
      */
-    void set_strategy(std::unique_ptr<Strategy> &&strategy)
-    {
-        strategy_ = std::move(strategy);
-    }
+    void set_strategy(std::unique_ptr<Strategy> &&strategy) { strategy_ = std::move(strategy); }
     /**
      * Context将一些工作委托给 Strategy 对象，而不是自行实现算法的 +多个版本。
      */
