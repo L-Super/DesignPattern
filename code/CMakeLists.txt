@@ -3,26 +3,38 @@ project(DesignPattern)
 
 set(CMAKE_CXX_STANDARD 17)
 
+#
+# 创建型模式
+#
+
 # Factory 工厂模式
 add_executable(Factory Factory.cpp)
 
 # AbstractFactory 抽象工厂模式
 add_executable(AbstractFactory AbstractFactory.cpp)
 
-# Observer 观察者模式
-add_executable(Observer Observer.cpp)
-
-# State 状态模式
-add_executable(State State.cpp)
-
 # Builder 建造者模式
 add_executable(Builder Builder.cpp)
+
+#
+# 结构型模式
+#
 
 # Proxy 代理模式
 add_executable(Proxy Proxy.cpp)
 
 # Adapter 适配器模式
 add_executable(Adapter Adapter.cpp)
+
+#
+# 行为模式
+#
+
+# Observer 观察者模式
+add_executable(Observer Observer.cpp)
+
+# State 状态模式
+add_executable(State State.cpp)
 
 # TemplateMethod 模板方法
 add_executable(TemplateMethod TemplateMethod.cpp)
@@ -32,3 +44,6 @@ add_executable(Strategy Strategy.cpp)
 
 # Flyweight 享元模式
 add_executable(Flyweight Flyweight.cpp)
+
+# Facade 外观模式
+add_executable(Facade Facade.cpp)
