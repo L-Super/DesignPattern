@@ -19,8 +19,8 @@
 此外， 所有模式可以根据其意图或目的来分类。 三种主要的模式类别：
 
 -   **创建型模式**：提供创建对象的机制， 增加已有代码的灵活性和可复用性。
-	- [工厂方法](工厂方法.md)模式(Factory Method Pattern)
-	- [[抽象工厂]]模式(Abstract Factory)
+	- [工厂方法模式](工厂方法.md)(Factory Method Pattern)
+	- [抽象工厂模式](抽象工厂.md)(Abstract Factory)
 	- [建造者模式](生成器模式.md)（Builder）
 	- 原型模式（Prototype）
 	- 单例模式（Singleton）
