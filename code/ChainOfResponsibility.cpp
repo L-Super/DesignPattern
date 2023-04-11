@@ -110,16 +110,21 @@ int main()
     auto monkey = std::make_shared<MonkeyHandler>();
     auto squirrel = std::make_shared<SquirrelHandler>();
     auto dog = std::make_shared<DogHandler>();
+
+    std::cout<<"monkey count: "<<monkey.use_count()<<" squirrel count: "<<squirrel.use_count()<<" dog count: "<<dog.use_count()<<std::endl;
     monkey->SetNext(squirrel)->SetNext(dog);
 
+    std::cout<<"monkey count: "<<monkey.use_count()<<" squirrel count: "<<squirrel.use_count()<<" dog count: "<<dog.use_count()<<std::endl;
     /**
      * 客户端应该能够向任何处理程序发送请求，而不仅仅是链中的第一个处理程序。
      */
     std::cout << "Chain: Monkey > Squirrel > Dog\n\n";
     ClientCode(*monkey);
+    std::cout<<"monkey count: "<<monkey.use_count()<<" squirrel count: "<<squirrel.use_count()<<" dog count: "<<dog.use_count()<<std::endl;
     std::cout << "\n";
     std::cout << "Subchain: Squirrel > Dog\n\n";
     ClientCode(*squirrel);
+    std::cout<<"monkey count: "<<monkey.use_count()<<" squirrel count: "<<squirrel.use_count()<<" dog count: "<<dog.use_count()<<std::endl;
 
 //    delete monkey;
 //    delete squirrel;
