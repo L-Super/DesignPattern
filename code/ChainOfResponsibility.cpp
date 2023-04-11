@@ -10,11 +10,9 @@
  * Handler接口声明用于生成处理程序链的方法。它还声明了执行请求的方法。
  */
 class Handler {
-    template<typename T>
-    using make = std::make_unique<T>();
 public:
     virtual std::shared_ptr<Handler> SetNext(std::shared_ptr<Handler> handler) = 0;
-    virtual std::string Handle(std::string request) = 0;
+    virtual std::string Handle(const std::string &request) = 0;
 };
 /**
  * 默认链行为可以在基本处理程序类中实现。
@@ -35,7 +33,7 @@ public:
         // $monkey->setNext($squirrel)->setNext($dog);
         return handler;
     }
-    std::string Handle(std::string request) override
+    std::string Handle(const std::string &request) override
     {
         if (this->next_handler_) {
             return this->next_handler_->Handle(request);
@@ -49,7 +47,7 @@ public:
  */
 class MonkeyHandler : public AbstractHandler {
 public:
-    std::string Handle(std::string request) override
+    std::string Handle(const std::string &request) override
     {
         if (request == "Banana") {
             return "Monkey: I'll eat the " + request + ".\n";
@@ -61,7 +59,7 @@ public:
 };
 class SquirrelHandler : public AbstractHandler {
 public:
-    std::string Handle(std::string request) override
+    std::string Handle(const std::string &request) override
     {
         if (request == "Nut") {
             return "Squirrel: I'll eat the " + request + ".\n";
@@ -73,7 +71,7 @@ public:
 };
 class DogHandler : public AbstractHandler {
 public:
-    std::string Handle(std::string request) override
+    std::string Handle(const std::string &request) override
     {
         if (request == "MeatBall") {
             return "Dog: I'll eat the " + request + ".\n";
@@ -111,29 +109,21 @@ int main()
 //    DogHandler *dog = new DogHandler;
 //    monkey->SetNext(squirrel)->SetNext(dog);
 
-
     auto monkey = std::make_shared<MonkeyHandler>();
     auto squirrel = std::make_shared<SquirrelHandler>();
     auto dog = std::make_shared<DogHandler>();
 
-    std::cout<<"monkey count: "<<monkey.use_count()<<" squirrel count: "<<squirrel.use_count()<<" dog count: "<<dog.use_count()<<std::endl;
     monkey->SetNext(squirrel)->SetNext(dog);
 
-    std::cout<<"monkey count: "<<monkey.use_count()<<" squirrel count: "<<squirrel.use_count()<<" dog count: "<<dog.use_count()<<std::endl;
     /**
      * 客户端应该能够向任何处理程序发送请求，而不仅仅是链中的第一个处理程序。
      */
     std::cout << "Chain: Monkey > Squirrel > Dog\n\n";
     ClientCode(*monkey);
-    std::cout<<"monkey count: "<<monkey.use_count()<<" squirrel count: "<<squirrel.use_count()<<" dog count: "<<dog.use_count()<<std::endl;
+
     std::cout << "\n";
     std::cout << "Subchain: Squirrel > Dog\n\n";
     ClientCode(*squirrel);
-    std::cout<<"monkey count: "<<monkey.use_count()<<" squirrel count: "<<squirrel.use_count()<<" dog count: "<<dog.use_count()<<std::endl;
-
-//    delete monkey;
-//    delete squirrel;
-//    delete dog;
 
     return 0;
 }
