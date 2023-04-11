@@ -10,6 +10,8 @@
  * Handler接口声明用于生成处理程序链的方法。它还声明了执行请求的方法。
  */
 class Handler {
+    template<typename T>
+    using make = std::make_unique<T>();
 public:
     virtual std::shared_ptr<Handler> SetNext(std::shared_ptr<Handler> handler) = 0;
     virtual std::string Handle(std::string request) = 0;
@@ -98,6 +100,7 @@ void ClientCode(Handler &handler)
         }
     }
 }
+
 /**
  * 客户端代码的另一部分构造实际的链。
  */
@@ -107,6 +110,8 @@ int main()
 //    SquirrelHandler *squirrel = new SquirrelHandler;
 //    DogHandler *dog = new DogHandler;
 //    monkey->SetNext(squirrel)->SetNext(dog);
+
+
     auto monkey = std::make_shared<MonkeyHandler>();
     auto squirrel = std::make_shared<SquirrelHandler>();
     auto dog = std::make_shared<DogHandler>();
