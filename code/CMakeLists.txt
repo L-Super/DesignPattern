@@ -47,3 +47,6 @@ add_executable(TemplateMethod TemplateMethod.cpp)
 
 # Strategy 策略模式
 add_executable(Strategy Strategy.cpp)
+
+# chain-of-responsibility 职责链模式
+add_executable(ChainOfResponsibility ChainOfResponsibility.cpp)
