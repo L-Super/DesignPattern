@@ -2,6 +2,7 @@
 // Created by Listening on 2023/4/11.
 // 职责链模式
 #include <iostream>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -10,7 +11,7 @@
  */
 class Handler {
 public:
-    virtual Handler *SetNext(Handler *handler) = 0;
+    virtual std::shared_ptr<Handler> SetNext(std::shared_ptr<Handler> handler) = 0;
     virtual std::string Handle(std::string request) = 0;
 };
 /**
@@ -21,18 +22,19 @@ class AbstractHandler : public Handler {
      * @var Handler
      */
 private:
-    Handler *next_handler_;
+    std::shared_ptr<Handler> next_handler_;
 
 public:
-    AbstractHandler() : next_handler_(nullptr) {
-    }
-    Handler *SetNext(Handler *handler) override {
+    AbstractHandler() : next_handler_(nullptr) {}
+    std::shared_ptr<Handler> SetNext(std::shared_ptr<Handler> handler) override
+    {
         this->next_handler_ = handler;
         // Returning a handler from here will let us link handlers in a convenient way like this:
         // $monkey->setNext($squirrel)->setNext($dog);
         return handler;
     }
-    std::string Handle(std::string request) override {
+    std::string Handle(std::string request) override
+    {
         if (this->next_handler_) {
             return this->next_handler_->Handle(request);
         }
@@ -45,30 +47,36 @@ public:
  */
 class MonkeyHandler : public AbstractHandler {
 public:
-    std::string Handle(std::string request) override {
+    std::string Handle(std::string request) override
+    {
         if (request == "Banana") {
             return "Monkey: I'll eat the " + request + ".\n";
-        } else {
+        }
+        else {
             return AbstractHandler::Handle(request);
         }
     }
 };
 class SquirrelHandler : public AbstractHandler {
 public:
-    std::string Handle(std::string request) override {
+    std::string Handle(std::string request) override
+    {
         if (request == "Nut") {
             return "Squirrel: I'll eat the " + request + ".\n";
-        } else {
+        }
+        else {
             return AbstractHandler::Handle(request);
         }
     }
 };
 class DogHandler : public AbstractHandler {
 public:
-    std::string Handle(std::string request) override {
+    std::string Handle(std::string request) override
+    {
         if (request == "MeatBall") {
             return "Dog: I'll eat the " + request + ".\n";
-        } else {
+        }
+        else {
             return AbstractHandler::Handle(request);
         }
     }
@@ -76,14 +84,16 @@ public:
 /**
  * 客户端代码通常适合使用单个处理程序。在大多数情况下，它甚至不知道处理程序是链的一部分。
  */
-void ClientCode(Handler &handler) {
+void ClientCode(Handler &handler)
+{
     std::vector<std::string> food = {"Nut", "Banana", "Cup of coffee"};
-    for (const auto &f : food) {
+    for (const auto &f: food) {
         std::cout << "Client: Who wants a " << f << "?\n";
         const std::string result = handler.Handle(f);
         if (!result.empty()) {
             std::cout << "  " << result;
-        } else {
+        }
+        else {
             std::cout << "  " << f << " was left untouched.\n";
         }
     }
@@ -91,10 +101,15 @@ void ClientCode(Handler &handler) {
 /**
  * 客户端代码的另一部分构造实际的链。
  */
-int main() {
-    MonkeyHandler *monkey = new MonkeyHandler;
-    SquirrelHandler *squirrel = new SquirrelHandler;
-    DogHandler *dog = new DogHandler;
+int main()
+{
+//    MonkeyHandler *monkey = new MonkeyHandler;
+//    SquirrelHandler *squirrel = new SquirrelHandler;
+//    DogHandler *dog = new DogHandler;
+//    monkey->SetNext(squirrel)->SetNext(dog);
+    auto monkey = std::make_shared<MonkeyHandler>();
+    auto squirrel = std::make_shared<SquirrelHandler>();
+    auto dog = std::make_shared<DogHandler>();
     monkey->SetNext(squirrel)->SetNext(dog);
 
     /**
@@ -106,9 +121,9 @@ int main() {
     std::cout << "Subchain: Squirrel > Dog\n\n";
     ClientCode(*squirrel);
 
-    delete monkey;
-    delete squirrel;
-    delete dog;
+//    delete monkey;
+//    delete squirrel;
+//    delete dog;
 
     return 0;
 }
