@@ -4,5 +4,6 @@
   "newLinkFormat": "relative",
   "useMarkdownLinks": true,
   "attachmentFolderPath": "/image",
-  "communityThemeSortOrder": "release"
+  "communityThemeSortOrder": "release",
+  "alwaysUpdateLinks": true
 }
