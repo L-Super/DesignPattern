@@ -32,6 +32,9 @@ add_executable(Flyweight Flyweight.cpp)
 # Facade 外观模式
 add_executable(Facade Facade.cpp)
 
+# Decorator 装饰模式
+add_executable(Decorator Decorator.cpp)
+
 #
 # 行为模式
 #
