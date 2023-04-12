@@ -23,11 +23,8 @@ public:
     }
 };
 /**
- * The base Decorator class follows the same interface as the other components.
- * The primary purpose of this class is to define the wrapping interface for all
- * concrete decorators. The default implementation of the wrapping code might
- * include a field for storing a wrapped component and the means to initialize
- * it.
+ * 基础装饰器类遵循与其他组件相同的接口。这个类的主要目的是为所有具体的装饰器定义包装接口。
+ * 包裹代码的默认实现可能包括一个用于存储被包裹组件的字段和初始化它的方法。
  */
 class Decorator : public Component {
     /**
@@ -40,20 +37,18 @@ public:
     Decorator(Component* component) : component_(component) {
     }
     /**
-   * The Decorator delegates all work to the wrapped component.
+   * 装饰器将所有工作委托给包装的组件。
    */
     std::string Operation() const override {
         return this->component_->Operation();
     }
 };
 /**
- * Concrete Decorators call the wrapped object and alter its result in some way.
+ * Concrete Decorators 调用包装的对象并以某种方式更改其结果。
  */
 class ConcreteDecoratorA : public Decorator {
     /**
-   * Decorators may call parent implementation of the operation, instead of
-   * calling the wrapped object directly. This approach simplifies extension of
-   * decorator classes.
+   * 装饰器可以调用操作的父级实现，而不是直接调用被包装的对象。这种方法简化了对 装饰器类的扩展。
    */
 public:
     ConcreteDecoratorA(Component* component) : Decorator(component) {
@@ -63,8 +58,7 @@ public:
     }
 };
 /**
- * Decorators can execute their behavior either before or after the call to a
- * wrapped object.
+ * 装饰器可以在调用一个被包装的对象之前或之后执行其行为。
  */
 class ConcreteDecoratorB : public Decorator {
 public:
@@ -76,9 +70,7 @@ public:
     }
 };
 /**
- * The client code works with all objects using the Component interface. This
- * way it can stay independent of the concrete classes of components it works
- * with.
+ * 客户端代码使用组件接口处理所有对象。这样，它可以独立于它所处理的具体组件类。
  */
 void ClientCode(Component* component) {
     // ...
@@ -87,19 +79,13 @@ void ClientCode(Component* component) {
 }
 
 int main() {
-    /**
-   * This way the client code can support both simple components...
-   */
+    // 这样客户端代码可以支持两个简单的组件...
     Component* simple = new ConcreteComponent;
     std::cout << "Client: I've got a simple component:\n";
     ClientCode(simple);
     std::cout << "\n\n";
-    /**
-   * ...as well as decorated ones.
-   *
-   * Note how decorators can wrap not only simple components but the other
-   * decorators as well.
-   */
+
+    // ...以及装饰的。请注意，装饰器不仅可以包装简单的组件，还可以包装其他装饰器。
     Component* decorator1 = new ConcreteDecoratorA(simple);
     Component* decorator2 = new ConcreteDecoratorB(decorator1);
     std::cout << "Client: Now I've got a decorated component:\n";
