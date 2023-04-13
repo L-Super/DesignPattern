@@ -1,6 +1,6 @@
 //
 // Created by Listening on 2023/4/12.
-//
+// 装饰模式
 #include <iostream>
 #include <string>
 #include <memory>
@@ -51,6 +51,7 @@ class ConcreteDecoratorA : public Decorator {
    * 装饰器可以调用操作的父级实现，而不是直接调用被包装的对象。这种方法简化了对 装饰器类的扩展。
    */
 public:
+    // 委托构造
     ConcreteDecoratorA(Component* component) : Decorator(component) {
     }
     std::string Operation() const override {
