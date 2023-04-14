@@ -8,49 +8,42 @@
 
 using std::string;
 
-enum Type {
-    PROTOTYPE_1 = 0,
-    PROTOTYPE_2
-};
+enum Type { PROTOTYPE_1 = 0, PROTOTYPE_2 };
 
 /**
- * The example class that has cloning ability. We'll see how the values of field
- * with different types will be cloned.
+ * 具有克隆功能的示例类。我们将看到如何克隆具有不同类型的字段的值。
  */
 class Prototype {
 protected:
-    string prototype_name_;
-    float prototype_field_;
+    string prototypeName;
+    float prototypeField{};
 
 public:
-    Prototype() {}
-    Prototype(string prototype_name)
-        : prototype_name_(prototype_name) {
-    }
-    virtual ~Prototype() {}
+    Prototype() = default;
+    Prototype(const string &prototype_name) : prototypeName(prototype_name) {}
+    virtual ~Prototype() = default;
     virtual Prototype *Clone() const = 0;
-    virtual void Method(float prototype_field) {
-        this->prototype_field_ = prototype_field;
-        std::cout << "Call Method from " << prototype_name_ << " with field : " << prototype_field << std::endl;
+    virtual void Method(float prototype_field)
+    {
+        this->prototypeField = prototype_field;
+        std::cout << "Call Method from " << prototypeName << " with field : " << prototype_field << std::endl;
     }
 };
 
 /**
- * ConcretePrototype1 is a Sub-Class of Prototype and implement the Clone Method
- * In this example all data members of Prototype Class are in the Stack. If you
- * have pointers in your properties for ex: String* name_ ,you will need to
- * implement the Copy-Constructor to make sure you have a deep copy from the
- * clone method
+ * ConcretePrototype1 是 Prototype 的一个子类，并实现了 Clone 方法。
+ * 在此示例中，Prototype 类的所有数据成员都在栈中。
+ * 如果你的属性中有指针，例如：string* name_，则需要实现拷贝构造函数以确保拥有来自克隆方法的深拷贝
  */
 
 class ConcretePrototype1 : public Prototype {
 private:
-    float concrete_prototype_field1_;
+    float concretePrototypeField1;
 
 public:
-    ConcretePrototype1(string prototype_name, float concrete_prototype_field)
-        : Prototype(prototype_name), concrete_prototype_field1_(concrete_prototype_field) {
-    }
+    ConcretePrototype1(const string &prototype_name, float concrete_prototype_field)
+        : Prototype(prototype_name), concretePrototypeField1(concrete_prototype_field)
+    {}
 
     /**
    * Notice that Clone method return a Pointer to a new ConcretePrototype1
@@ -58,22 +51,18 @@ public:
    * to free that memory. I you have smart pointer knowledge you may prefer to
    * use unique_pointer here.
    */
-    Prototype *Clone() const override {
-        return new ConcretePrototype1(*this);
-    }
+    Prototype *Clone() const override { return new ConcretePrototype1(*this); }
 };
 
 class ConcretePrototype2 : public Prototype {
 private:
-    float concrete_prototype_field2_;
+    float concretePrototypeField2;
 
 public:
     ConcretePrototype2(string prototype_name, float concrete_prototype_field)
-        : Prototype(prototype_name), concrete_prototype_field2_(concrete_prototype_field) {
-    }
-    Prototype *Clone() const override {
-        return new ConcretePrototype2(*this);
-    }
+        : Prototype(prototype_name), concretePrototypeField2(concrete_prototype_field)
+    {}
+    Prototype *Clone() const override { return new ConcretePrototype2(*this); }
 };
 
 /**
@@ -87,7 +76,8 @@ private:
     std::unordered_map<Type, Prototype *, std::hash<int>> prototypes_;
 
 public:
-    PrototypeFactory() {
+    PrototypeFactory()
+    {
         prototypes_[Type::PROTOTYPE_1] = new ConcretePrototype1("PROTOTYPE_1 ", 50.f);
         prototypes_[Type::PROTOTYPE_2] = new ConcretePrototype2("PROTOTYPE_2 ", 60.f);
     }
@@ -97,7 +87,8 @@ public:
    * knowelege will be better to use it here.
    */
 
-    ~PrototypeFactory() {
+    ~PrototypeFactory()
+    {
         delete prototypes_[Type::PROTOTYPE_1];
         delete prototypes_[Type::PROTOTYPE_2];
     }
@@ -106,12 +97,11 @@ public:
    * Notice here that you just need to specify the type of the prototype you
    * want and the method will create from the object with this type.
    */
-    Prototype *CreatePrototype(Type type) {
-        return prototypes_[type]->Clone();
-    }
+    Prototype *CreatePrototype(Type type) { return prototypes_[type]->Clone(); }
 };
 
-void Client(PrototypeFactory &prototype_factory) {
+void Client(PrototypeFactory &prototype_factory)
+{
     std::cout << "Let's create a Prototype 1\n";
 
     Prototype *prototype = prototype_factory.CreatePrototype(Type::PROTOTYPE_1);
@@ -128,7 +118,8 @@ void Client(PrototypeFactory &prototype_factory) {
     delete prototype;
 }
 
-int main() {
+int main()
+{
     PrototypeFactory *prototype_factory = new PrototypeFactory();
     Client(*prototype_factory);
     delete prototype_factory;
