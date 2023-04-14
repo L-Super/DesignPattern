@@ -46,11 +46,8 @@ public:
     {}
 
     /**
-   * Notice that Clone method return a Pointer to a new ConcretePrototype1
-   * replica. so, the client (who call the clone method) has the responsability
-   * to free that memory. I you have smart pointer knowledge you may prefer to
-   * use unique_pointer here.
-   */
+     * 注意，Clone 方法返回指向新的 ConcretePrototype1 副本的指针。因此，客户端（调用克隆方法）有责任释放该内存。你可能更喜欢在这里使用unique_pointer。
+    */
     Prototype *Clone() const override { return new ConcretePrototype1(*this); }
 };
 
@@ -66,11 +63,8 @@ public:
 };
 
 /**
- * In PrototypeFactory you have two concrete prototypes, one for each concrete
- * prototype class, so each time you want to create a bullet , you can use the
- * existing ones and clone those.
+ * 在PrototypeFactory中，你有两个具体的原型，每个具体的原型类都有一个，所以每次你想创建一个子弹，你可以使用 现有的原型并克隆这些原型。
  */
-
 class PrototypeFactory {
 private:
     std::unordered_map<Type, Prototype *, std::hash<int>> prototypes_;
@@ -82,11 +76,6 @@ public:
         prototypes_[Type::PROTOTYPE_2] = new ConcretePrototype2("PROTOTYPE_2 ", 60.f);
     }
 
-    /**
-   * Be carefull of free all memory allocated. Again, if you have smart pointers
-   * knowelege will be better to use it here.
-   */
-
     ~PrototypeFactory()
     {
         delete prototypes_[Type::PROTOTYPE_1];
@@ -94,9 +83,8 @@ public:
     }
 
     /**
-   * Notice here that you just need to specify the type of the prototype you
-   * want and the method will create from the object with this type.
-   */
+     * 注意，这里你只需要指定你想要的原型的类型，该方法将从这个类型的对象中创建。
+     */
     Prototype *CreatePrototype(Type type) { return prototypes_[type]->Clone(); }
 };
 
