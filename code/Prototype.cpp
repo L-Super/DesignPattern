@@ -35,7 +35,6 @@ public:
  * 在此示例中，Prototype 类的所有数据成员都在栈中。
  * 如果你的属性中有指针，例如：string* name_，则需要实现拷贝构造函数以确保拥有来自克隆方法的深拷贝
  */
-
 class ConcretePrototype1 : public Prototype {
 private:
     float concretePrototypeField1;
