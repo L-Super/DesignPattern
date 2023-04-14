@@ -16,6 +16,9 @@ add_executable(AbstractFactory AbstractFactory.cpp)
 # Builder 建造者模式
 add_executable(Builder Builder.cpp)
 
+# Prototype 原型模式
+add_executable(Prototype Prototype.cpp)
+
 #
 # 结构型模式
 #
