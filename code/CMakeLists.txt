@@ -56,3 +56,6 @@ add_executable(Strategy Strategy.cpp)
 
 # chain-of-responsibility 职责链模式
 add_executable(ChainOfResponsibility ChainOfResponsibility.cpp)
+
+# Visitor 访问者模式
+add_executable(Visitor Visitor.cpp)
