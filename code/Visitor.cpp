@@ -58,15 +58,10 @@ public:
 };
 
 /**
- * Concrete Visitors implement several versions of the same algorithm, which can
- * work with all concrete component classes.
- *
- * You can experience the biggest benefit of the Visitor pattern when using it
- * with a complex object structure, such as a Composite tree. In this case, it
- * might be helpful to store some intermediate state of the algorithm while
- * executing visitor's methods over various objects of the structure.
  * Concrete Visitors 实现同一算法的多个版本，可以与所有具体组件类一起使用。
- * 当将访问者模式与复杂的对象结构（如复合树）一起使用时，您可以体验到它的最大好处。在这种情况下，在对结构的各种对象执行访问者的方法时存储算法的一些中间状态可能会有所帮助。
+ *
+ * 当访问者模式与复杂的对象结构（如复合树）一起使用时，你可以体验到它的最大好处。
+ * 在这种情况下，在不同对象结构上执行访问者方法时，存储算法的一些中间状态可能会有所帮助。
  */
 class ConcreteVisitor1 : public Visitor {
 public:
@@ -89,9 +84,7 @@ public:
     }
 };
 /**
- * The client code can run visitor operations over any set of elements without
- * figuring out their concrete classes. The accept operation directs a call to
- * the appropriate operation in the visitor object.
+ * 客户端代码可以对任何元素集运行访问者操作，而无需弄清楚它们的具体类。接受操作将调用定向到 visitor 对象中的相应操作。
  */
 void ClientCode(std::array<const Component *, 2> components, Visitor *visitor) {
     // ...
