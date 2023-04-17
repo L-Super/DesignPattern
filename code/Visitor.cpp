@@ -5,9 +5,6 @@
 #include <array>
 
 /**
- * The Visitor Interface declares a set of visiting methods that correspond to
- * component classes. The signature of a visiting method allows the visitor to
- * identify the exact class of the component that it's dealing with.
  * Visitor 接口声明一组与组件类对应的访问方法。访问方法的签名允许访问者识别它正在处理的组件的确切类别。
  */
 class ConcreteComponentA;
@@ -20,10 +17,8 @@ public:
 };
 
 /**
- * The Component interface declares an `accept` method that should take the base
- * visitor interface as an argument.
+ * Component 接口声明一个“accept”方法，该方法应将基本访问者接口作为参数。
  */
-
 class Component {
 public:
     virtual ~Component() {}
@@ -31,24 +26,19 @@ public:
 };
 
 /**
- * Each Concrete Component must implement the `Accept` method in such a way that
- * it calls the visitor's method corresponding to the component's class.
+ * 每个Concrete Component都必须以这样一种方式实现“Accept”方法，即它调用与组件的类相对应的访问者方法。
  */
 class ConcreteComponentA : public Component {
     /**
-   * Note that we're calling `visitConcreteComponentA`, which matches the
-   * current class name. This way we let the visitor know the class of the
-   * component it works with.
-   */
+     * 注意，我们调用的是“visitConcreteComponentA”，它与当前类名匹配。通过这种方式，我们让访问者知道它使用的组件的类。
+     */
 public:
     void Accept(Visitor *visitor) const override {
         visitor->VisitConcreteComponentA(this);
     }
     /**
-   * Concrete Components may have special methods that don't exist in their base
-   * class or interface. The Visitor is still able to use these methods since
-   * it's aware of the component's concrete class.
-   */
+     * 具体组件类可能具有基类或接口中不存在的特殊方法。访问者仍然可以使用这些方法，因为它知道组件的具体类。
+     */
     std::string ExclusiveMethodOfConcreteComponentA() const {
         return "A";
     }
@@ -56,8 +46,8 @@ public:
 
 class ConcreteComponentB : public Component {
     /**
-   * Same here: visitConcreteComponentB => ConcreteComponentB
-   */
+     * 同样的: visitConcreteComponentB => ConcreteComponentB
+     */
 public:
     void Accept(Visitor *visitor) const override {
         visitor->VisitConcreteComponentB(this);
@@ -75,6 +65,8 @@ public:
  * with a complex object structure, such as a Composite tree. In this case, it
  * might be helpful to store some intermediate state of the algorithm while
  * executing visitor's methods over various objects of the structure.
+ * Concrete Visitors 实现同一算法的多个版本，可以与所有具体组件类一起使用。
+ * 当将访问者模式与复杂的对象结构（如复合树）一起使用时，您可以体验到它的最大好处。在这种情况下，在对结构的各种对象执行访问者的方法时存储算法的一些中间状态可能会有所帮助。
  */
 class ConcreteVisitor1 : public Visitor {
 public:
