@@ -20,9 +20,9 @@ protected:
 
 public:
     Prototype() = default;
-    Prototype(const string &prototype_name) : prototypeName(prototype_name) {}
+    Prototype(const string& prototype_name) : prototypeName(prototype_name) {}
     virtual ~Prototype() = default;
-    virtual Prototype *Clone() const = 0;
+    virtual Prototype* Clone() const = 0;
     virtual void Method(float prototype_field)
     {
         this->prototypeField = prototype_field;
@@ -40,14 +40,17 @@ private:
     float concretePrototypeField1;
 
 public:
-    ConcretePrototype1(const string &prototype_name, float concrete_prototype_field)
+    ConcretePrototype1(const string& prototype_name, float concrete_prototype_field)
         : Prototype(prototype_name), concretePrototypeField1(concrete_prototype_field)
     {}
 
     /**
      * 注意，Clone 方法返回指向新的 ConcretePrototype1 副本的指针。因此，客户端（调用克隆方法）有责任释放该内存。你可能更喜欢在这里使用unique_pointer。
     */
-    Prototype *Clone() const override { return new ConcretePrototype1(*this); }
+    Prototype* Clone() const override
+    {
+        return new ConcretePrototype1(*this);
+    }
 };
 
 class ConcretePrototype2 : public Prototype {
@@ -58,7 +61,10 @@ public:
     ConcretePrototype2(string prototype_name, float concrete_prototype_field)
         : Prototype(prototype_name), concretePrototypeField2(concrete_prototype_field)
     {}
-    Prototype *Clone() const override { return new ConcretePrototype2(*this); }
+    Prototype* Clone() const override
+    {
+        return new ConcretePrototype2(*this);
+    }
 };
 
 /**
@@ -66,7 +72,7 @@ public:
  */
 class PrototypeFactory {
 private:
-    std::unordered_map<Type, Prototype *, std::hash<int>> prototypes_;
+    std::unordered_map<Type, Prototype*, std::hash<int>> prototypes_;
 
 public:
     PrototypeFactory()
@@ -84,14 +90,17 @@ public:
     /**
      * 注意，这里你只需要指定你想要的原型的类型，该方法将从这个类型的对象中创建。
      */
-    Prototype *CreatePrototype(Type type) { return prototypes_[type]->Clone(); }
+    Prototype* CreatePrototype(Type type)
+    {
+        return prototypes_[type]->Clone();
+    }
 };
 
-void Client(PrototypeFactory &prototype_factory)
+void Client(PrototypeFactory& prototype_factory)
 {
     std::cout << "Let's create a Prototype 1\n";
 
-    Prototype *prototype = prototype_factory.CreatePrototype(Type::PROTOTYPE_1);
+    Prototype* prototype = prototype_factory.CreatePrototype(Type::PROTOTYPE_1);
     prototype->Method(90);
     delete prototype;
 
@@ -107,7 +116,7 @@ void Client(PrototypeFactory &prototype_factory)
 
 int main()
 {
-    PrototypeFactory *prototype_factory = new PrototypeFactory();
+    PrototypeFactory* prototype_factory = new PrototypeFactory();
     Client(*prototype_factory);
     delete prototype_factory;
 

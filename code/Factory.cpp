@@ -19,11 +19,17 @@ public:
  */
 class ConcreteProduct1 : public Product {
 public:
-    std::string Operation() const override { return "{ConcreteProduct1}"; }
+    std::string Operation() const override
+    {
+        return "{ConcreteProduct1}";
+    }
 };
 class ConcreteProduct2 : public Product {
 public:
-    std::string Operation() const override { return "{ConcreteProduct2}"; }
+    std::string Operation() const override
+    {
+        return "{ConcreteProduct2}";
+    }
 };
 
 /**
@@ -35,7 +41,7 @@ class Factory {
 	 */
 public:
     virtual ~Factory() = default;
-    virtual Product *FactoryMethod() const = 0;
+    virtual Product* FactoryMethod() const = 0;
     /**
 	 * 注意，Factory 的主要责任不是创造产品。通常，它包含一些依赖于 Product 对象的核心业务逻辑，由工厂方法返回。
 	 * 子类可以通过重写工厂方法并从中返回不同类型的产品来间接更改该业务逻辑。
@@ -43,7 +49,7 @@ public:
     std::string SomeOperation() const
     {
         // 调用工厂方法创建 Product 对象
-        Product *product = this->FactoryMethod();
+        Product* product = this->FactoryMethod();
         // Now, use the product.
         std::string result = "Factory: The same creator's code has just worked with " + product->Operation();
         delete product;
@@ -59,18 +65,24 @@ class ConcreteFactory1 : public Factory {
 	* 注意，该方法的签名仍然使用抽象产品类型，即使具体产品实际上是从该方法返回的。这样，Factory 就可以独立于具体的产品类别。
 	*/
 public:
-    Product *FactoryMethod() const override { return new ConcreteProduct1(); }
+    Product* FactoryMethod() const override
+    {
+        return new ConcreteProduct1();
+    }
 };
 
 class ConcreteFactory2 : public Factory {
 public:
-    Product *FactoryMethod() const override { return new ConcreteProduct2(); }
+    Product* FactoryMethod() const override
+    {
+        return new ConcreteProduct2();
+    }
 };
 
 /**
  * 客户端代码与具体创建者的实例一起工作，尽管是通过其基本接口。只要客户端通过基本接口继续与创建者合作，您就可以将任何创建者的子类传递给它。
  */
-void ClientCode(const Factory &creator)
+void ClientCode(const Factory& creator)
 {
     // ...
     std::cout << "Client: I'm not aware of the creator's class, but it still works.\n"
@@ -84,11 +96,11 @@ void ClientCode(const Factory &creator)
 int main()
 {
     std::cout << "App: Launched with the ConcreteFactory1.\n";
-    Factory *creator = new ConcreteFactory1();
+    Factory* creator = new ConcreteFactory1();
     ClientCode(*creator);
     std::cout << std::endl;
     std::cout << "App: Launched with the ConcreteFactory2.\n";
-    Factory *creator2 = new ConcreteFactory2();
+    Factory* creator2 = new ConcreteFactory2();
     ClientCode(*creator2);
 
     delete creator;

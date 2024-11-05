@@ -11,18 +11,30 @@
  */
 class Subsystem1 {
 public:
-    std::string Operation1() const { return "Subsystem1: Ready!\n"; }
+    std::string Operation1() const
+    {
+        return "Subsystem1: Ready!\n";
+    }
     // ...
-    std::string OperationN() const { return "Subsystem1: Go!\n"; }
+    std::string OperationN() const
+    {
+        return "Subsystem1: Go!\n";
+    }
 };
 /**
  * 一些外观可以同时与多个子系统一起工作。
  */
 class Subsystem2 {
 public:
-    std::string Operation1() const { return "Subsystem2: Get ready!\n"; }
+    std::string Operation1() const
+    {
+        return "Subsystem2: Get ready!\n";
+    }
     // ...
-    std::string OperationZ() const { return "Subsystem2: Fire!\n"; }
+    std::string OperationZ() const
+    {
+        return "Subsystem2: Fire!\n";
+    }
 };
 
 /**
@@ -31,8 +43,8 @@ public:
  */
 class Facade {
 protected:
-    Subsystem1 *subsystem1_;
-    Subsystem2 *subsystem2_;
+    Subsystem1* subsystem1_;
+    Subsystem2* subsystem2_;
     /**
      * 根据应用程序的需要，可以为外观提供现有的子系统对象，也可以强制外观自行创建它们。
      */
@@ -40,7 +52,7 @@ public:
     /**
      * 在这种情况下，我们将内存所有权委托给外观类
      */
-    explicit Facade(Subsystem1 *subsystem1 = nullptr, Subsystem2 *subsystem2 = nullptr)
+    explicit Facade(Subsystem1* subsystem1 = nullptr, Subsystem2* subsystem2 = nullptr)
     {
         // subsystem1 != nullptr ? subsystem1 : new Subsystem1 简写
         this->subsystem1_ = subsystem1 ?: new Subsystem1;
@@ -69,7 +81,7 @@ public:
 /**
  * 客户端代码通过外观提供的简单接口处理复杂的子系统。当外观管理子系统的生命周期时，客户端甚至可能不知道子系统的存在。此方法可让您控制复杂性。
  */
-void ClientCode(Facade *facade)
+void ClientCode(Facade* facade)
 {
     // ...
     std::cout << facade->Operation();
@@ -81,8 +93,8 @@ void ClientCode(Facade *facade)
  */
 int main()
 {
-    Subsystem1 *subsystem1 = new Subsystem1;
-    Subsystem2 *subsystem2 = new Subsystem2;
+    Subsystem1* subsystem1 = new Subsystem1;
+    Subsystem2* subsystem2 = new Subsystem2;
 
     std::unique_ptr<Facade> facade = std::make_unique<Facade>(subsystem1, subsystem2);
     ClientCode(facade.get());

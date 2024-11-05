@@ -2,8 +2,8 @@
 // Created by Listening on 2023/4/12.
 // 装饰模式
 #include <iostream>
-#include <string>
 #include <memory>
+#include <string>
 
 /**
  * 基本组件接口定义了可以由装饰器更改的操作。
@@ -18,7 +18,8 @@ public:
  */
 class ConcreteComponent : public Component {
 public:
-    std::string Operation() const override {
+    std::string Operation() const override
+    {
         return "ConcreteComponent";
     }
 };
@@ -34,12 +35,12 @@ protected:
     Component* component_;
 
 public:
-    Decorator(Component* component) : component_(component) {
-    }
+    Decorator(Component* component) : component_(component) {}
     /**
    * 装饰器将所有工作委托给包装的组件。
    */
-    std::string Operation() const override {
+    std::string Operation() const override
+    {
         return this->component_->Operation();
     }
 };
@@ -52,9 +53,9 @@ class ConcreteDecoratorA : public Decorator {
    */
 public:
     // 委托构造
-    ConcreteDecoratorA(Component* component) : Decorator(component) {
-    }
-    std::string Operation() const override {
+    ConcreteDecoratorA(Component* component) : Decorator(component) {}
+    std::string Operation() const override
+    {
         return "ConcreteDecoratorA(" + Decorator::Operation() + ")";
     }
 };
@@ -63,23 +64,25 @@ public:
  */
 class ConcreteDecoratorB : public Decorator {
 public:
-    ConcreteDecoratorB(Component* component) : Decorator(component) {
-    }
+    ConcreteDecoratorB(Component* component) : Decorator(component) {}
 
-    std::string Operation() const override {
+    std::string Operation() const override
+    {
         return "ConcreteDecoratorB(" + Decorator::Operation() + ")";
     }
 };
 /**
  * 客户端代码使用组件接口处理所有对象。这样，它可以独立于它所处理的具体组件类。
  */
-void ClientCode(Component* component) {
+void ClientCode(Component* component)
+{
     // ...
     std::cout << "RESULT: " << component->Operation();
     // ...
 }
 
-int main() {
+int main()
+{
     // 这样客户端代码可以支持两个简单的组件...
     Component* simple = new ConcreteComponent;
     std::cout << "Client: I've got a simple component:\n";

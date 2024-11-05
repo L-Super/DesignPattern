@@ -10,14 +10,14 @@
 class BaseObserver {
 public:
     virtual ~BaseObserver() = default;
-    virtual void Update(const std::string &msgFromSubject) = 0;
+    virtual void Update(const std::string& msgFromSubject) = 0;
 };
 
 class BaseSubject {
 public:
     virtual ~BaseSubject() = default;
-    virtual void Attach(BaseObserver *observer) = 0;
-    virtual void Detach(BaseObserver *observer) = 0;
+    virtual void Attach(BaseObserver* observer) = 0;
+    virtual void Detach(BaseObserver* observer) = 0;
     virtual void Notify() = 0;
 };
 
@@ -26,14 +26,20 @@ public:
  */
 class Subject : public BaseSubject {
 public:
-    virtual ~Subject() { std::cout << "Subject destructor" << std::endl; }
+    virtual ~Subject()
+    {
+        std::cout << "Subject destructor" << std::endl;
+    }
     /**
 	 * 订阅管理方法。
 	 * @param observer
 	 */
-    void Attach(BaseObserver *observer) override { observerList.push_back(observer); }
+    void Attach(BaseObserver* observer) override
+    {
+        observerList.push_back(observer);
+    }
 
-    void Detach(BaseObserver *observer) override
+    void Detach(BaseObserver* observer) override
     {
         std::cout << "Detach observer:" << &observer << std::endl;
         observerList.remove(observer);
@@ -43,7 +49,7 @@ public:
         ObserverNums();
         for (auto it: observerList) { it->Update(msg); }
     }
-    void CreateMessage(const std::string &message = "empty")
+    void CreateMessage(const std::string& message = "empty")
     {
         this->msg = message;
         Notify();
@@ -67,7 +73,7 @@ private:
 
 private:
     std::string msg;
-    std::list<BaseObserver *> observerList;
+    std::list<BaseObserver*> observerList;
 };
 
 class Observer : public BaseObserver {
@@ -79,8 +85,11 @@ public:
         std::cout << "I'm the Observer \"" << ++Observer::staticNumber << "\".\n";
         this->number = Observer::staticNumber;
     }
-    virtual ~Observer() { std::cout << "Observer destructor" << std::endl; }
-    void Update(const std::string &messageFromSubject) override
+    virtual ~Observer()
+    {
+        std::cout << "Observer destructor" << std::endl;
+    }
+    void Update(const std::string& messageFromSubject) override
     {
         this->msgFromSubject = messageFromSubject;
         PrintInfo();

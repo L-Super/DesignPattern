@@ -42,10 +42,10 @@ class Abstraction {
    * @var Implementation
    */
 protected:
-    Implementation *implementation_;
+    Implementation* implementation_;
 
 public:
-    Abstraction(Implementation *implementation) : implementation_(implementation) {}
+    Abstraction(Implementation* implementation) : implementation_(implementation) {}
 
     virtual ~Abstraction() {}
 
@@ -60,7 +60,7 @@ public:
  */
 class ExtendedAbstraction : public Abstraction {
 public:
-    ExtendedAbstraction(Implementation *implementation) : Abstraction(implementation) {}
+    ExtendedAbstraction(Implementation* implementation) : Abstraction(implementation) {}
     std::string Operation() const override
     {
         return "ExtendedAbstraction: Extended operation with:\n" + this->implementation_->OperationImplementation();
@@ -71,7 +71,7 @@ public:
  * 除了在初始化阶段，抽象类对象与特定的实现类对象关联之外，客户端代码应
  * 仅依赖于抽象类。这样，客户端代码可以支持任何抽象类-实现类的组合。
  */
-void ClientCode(const Abstraction &abstraction)
+void ClientCode(const Abstraction& abstraction)
 {
     // ...
     std::cout << abstraction.Operation() << std::endl;
@@ -83,8 +83,8 @@ void ClientCode(const Abstraction &abstraction)
  */
 int main()
 {
-    Implementation *implementation = new ConcreteImplementationA;
-    Abstraction *abstraction = new Abstraction(implementation);
+    Implementation* implementation = new ConcreteImplementationA;
+    Abstraction* abstraction = new Abstraction(implementation);
     ClientCode(*abstraction);
 
     delete implementation;

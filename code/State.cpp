@@ -14,12 +14,15 @@ class State {
 	 * @var Context
 	 */
 protected:
-    Context *mContext;
+    Context* mContext;
 
 public:
     virtual ~State() = default;
 
-    void SetContext(Context *context) { this->mContext = context; }
+    void SetContext(Context* context)
+    {
+        this->mContext = context;
+    }
 
     virtual void Handle1() = 0;
     virtual void Handle2() = 0;
@@ -33,26 +36,39 @@ class Context {
 	 * @var State 对上下文当前状态的引用。.
 	 */
 private:
-    State *mState;
+    State* mState;
 
 public:
-    explicit Context(State *state) : mState(nullptr) { this->TransitionTo(state); }
-    ~Context() { delete mState; }
+    explicit Context(State* state) : mState(nullptr)
+    {
+        this->TransitionTo(state);
+    }
+    ~Context()
+    {
+        delete mState;
+    }
     /**
 	 * Context 允许在运行时更改 State 对象。
 	 */
-    void TransitionTo(State *state)
+    void TransitionTo(State* state)
     {
         std::cout << "Context: Transition to " << typeid(*state).name() << ".\n";
-        if (this->mState != nullptr) delete this->mState;
+        if (this->mState != nullptr)
+            delete this->mState;
         this->mState = state;
         this->mState->SetContext(this);
     }
     /**
 	 * Context 将其部分行为委托给当前的 State 对象。
 	 */
-    void Request1() { this->mState->Handle1(); }
-    void Request2() { this->mState->Handle2(); }
+    void Request1()
+    {
+        this->mState->Handle1();
+    }
+    void Request2()
+    {
+        this->mState->Handle2();
+    }
 };
 
 /**
@@ -62,12 +78,18 @@ class ConcreteStateA : public State {
 public:
     void Handle1() override;
 
-    void Handle2() override { std::cout << "ConcreteStateA handles request2.\n"; }
+    void Handle2() override
+    {
+        std::cout << "ConcreteStateA handles request2.\n";
+    }
 };
 
 class ConcreteStateB : public State {
 public:
-    void Handle1() override { std::cout << "ConcreteStateB handles request1.\n"; }
+    void Handle1() override
+    {
+        std::cout << "ConcreteStateB handles request1.\n";
+    }
     void Handle2() override
     {
         std::cout << "ConcreteStateB handles request2.\n";
@@ -86,7 +108,7 @@ void ConcreteStateA::Handle1()
 
 int main()
 {
-    Context *context = new Context(new ConcreteStateA);
+    Context* context = new Context(new ConcreteStateA);
     context->Request1();
     context->Request2();
     delete context;

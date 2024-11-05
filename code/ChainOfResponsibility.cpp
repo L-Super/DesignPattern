@@ -12,7 +12,7 @@
 class Handler {
 public:
     virtual std::shared_ptr<Handler> SetNext(std::shared_ptr<Handler> handler) = 0;
-    virtual std::string Handle(const std::string &request) = 0;
+    virtual std::string Handle(const std::string& request) = 0;
 };
 /**
  * 默认链行为可以在基本处理程序类中实现。
@@ -33,7 +33,7 @@ public:
         // $monkey->setNext($squirrel)->setNext($dog);
         return handler;
     }
-    std::string Handle(const std::string &request) override
+    std::string Handle(const std::string& request) override
     {
         if (this->next_handler_) {
             return this->next_handler_->Handle(request);
@@ -47,7 +47,7 @@ public:
  */
 class MonkeyHandler : public AbstractHandler {
 public:
-    std::string Handle(const std::string &request) override
+    std::string Handle(const std::string& request) override
     {
         if (request == "Banana") {
             return "Monkey: I'll eat the " + request + ".\n";
@@ -59,7 +59,7 @@ public:
 };
 class SquirrelHandler : public AbstractHandler {
 public:
-    std::string Handle(const std::string &request) override
+    std::string Handle(const std::string& request) override
     {
         if (request == "Nut") {
             return "Squirrel: I'll eat the " + request + ".\n";
@@ -71,7 +71,7 @@ public:
 };
 class DogHandler : public AbstractHandler {
 public:
-    std::string Handle(const std::string &request) override
+    std::string Handle(const std::string& request) override
     {
         if (request == "MeatBall") {
             return "Dog: I'll eat the " + request + ".\n";
@@ -84,10 +84,10 @@ public:
 /**
  * 客户端代码通常适合使用单个处理程序。在大多数情况下，它甚至不知道处理程序是链的一部分。
  */
-void ClientCode(Handler &handler)
+void ClientCode(Handler& handler)
 {
     std::vector<std::string> food = {"Nut", "Banana", "Cup of coffee"};
-    for (const auto &f: food) {
+    for (const auto& f: food) {
         std::cout << "Client: Who wants a " << f << "?\n";
         const std::string result = handler.Handle(f);
         if (!result.empty()) {
@@ -104,10 +104,10 @@ void ClientCode(Handler &handler)
  */
 int main()
 {
-//    MonkeyHandler *monkey = new MonkeyHandler;
-//    SquirrelHandler *squirrel = new SquirrelHandler;
-//    DogHandler *dog = new DogHandler;
-//    monkey->SetNext(squirrel)->SetNext(dog);
+    //    MonkeyHandler *monkey = new MonkeyHandler;
+    //    SquirrelHandler *squirrel = new SquirrelHandler;
+    //    DogHandler *dog = new DogHandler;
+    //    monkey->SetNext(squirrel)->SetNext(dog);
 
     auto monkey = std::make_shared<MonkeyHandler>();
     auto squirrel = std::make_shared<SquirrelHandler>();

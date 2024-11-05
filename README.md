@@ -42,7 +42,7 @@
 	- [代理模式](代理模式.md)（Proxy）
 -   **行为模式**：负责对象间的高效沟通和职责委派。
 	- [职责链模式](职责链模式.md)（Chain of Responsibility）
-	- 命令模式（Command）
+	- [命令模式](命令模式.md)（Command）
 	- 中介者模式（Mediator）
 	- [观察者模式](观察者模式.md)（Observer）
 	- [状态模式](状态模式.md)（State）

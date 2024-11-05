@@ -27,9 +27,18 @@ public:
      * 这些操作已经实现。
      */
 protected:
-    void BaseOperation1() const { std::cout << "AbstractClass says: I am doing the bulk of the work\n"; }
-    void BaseOperation2() const { std::cout << "AbstractClass says: But I let subclasses override some operations\n"; }
-    void BaseOperation3() const { std::cout << "AbstractClass says: But I am doing the bulk of the work anyway\n"; }
+    void BaseOperation1() const
+    {
+        std::cout << "AbstractClass says: I am doing the bulk of the work\n";
+    }
+    void BaseOperation2() const
+    {
+        std::cout << "AbstractClass says: But I let subclasses override some operations\n";
+    }
+    void BaseOperation3() const
+    {
+        std::cout << "AbstractClass says: But I am doing the bulk of the work anyway\n";
+    }
     /**
      * 这些操作必须在子类中实现。
      */
@@ -46,22 +55,37 @@ protected:
  */
 class ConcreteClass1 : public AbstractClass {
 protected:
-    void RequiredOperations1() const override { std::cout << "ConcreteClass1 says: Implemented Operation1\n"; }
-    void RequiredOperation2() const override { std::cout << "ConcreteClass1 says: Implemented Operation2\n"; }
+    void RequiredOperations1() const override
+    {
+        std::cout << "ConcreteClass1 says: Implemented Operation1\n";
+    }
+    void RequiredOperation2() const override
+    {
+        std::cout << "ConcreteClass1 says: Implemented Operation2\n";
+    }
 };
 /**
  * 通常，具体类仅覆盖基类操作的一小部分。
  */
 class ConcreteClass2 : public AbstractClass {
 protected:
-    void RequiredOperations1() const override { std::cout << "ConcreteClass2 says: Implemented Operation1\n"; }
-    void RequiredOperation2() const override { std::cout << "ConcreteClass2 says: Implemented Operation2\n"; }
-    void Hook1() const override { std::cout << "ConcreteClass2 says: Overridden Hook1\n"; }
+    void RequiredOperations1() const override
+    {
+        std::cout << "ConcreteClass2 says: Implemented Operation1\n";
+    }
+    void RequiredOperation2() const override
+    {
+        std::cout << "ConcreteClass2 says: Implemented Operation2\n";
+    }
+    void Hook1() const override
+    {
+        std::cout << "ConcreteClass2 says: Overridden Hook1\n";
+    }
 };
 /**
  * 客户端代码调用模板方法来执行算法。客户端代码不必知道它所处理的对象的具体类，只要它通过其基类的接口处理对象即可。
  */
-void ClientCode(AbstractClass *class_)
+void ClientCode(AbstractClass* class_)
 {
     // ...
     class_->TemplateMethod();

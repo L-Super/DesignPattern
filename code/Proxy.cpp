@@ -19,7 +19,10 @@ public:
  */
 class RealSubject : public Subject {
 public:
-    void Request() const override { std::cout << "RealSubject: Handling request.\n"; }
+    void Request() const override
+    {
+        std::cout << "RealSubject: Handling request.\n";
+    }
 };
 /**
  * Proxy 具有与 RealSubject 相同的接口。
@@ -29,7 +32,7 @@ class Proxy : public Subject {
 	 * @var RealSubject
 	 */
 private:
-    RealSubject *real_subject_;
+    RealSubject* real_subject_;
 
     bool CheckAccess() const
     {
@@ -37,15 +40,21 @@ private:
         std::cout << "Proxy: Checking access prior to firing a real request.\n";
         return true;
     }
-    void LogAccess() const { std::cout << "Proxy: Logging the time of request.\n"; }
+    void LogAccess() const
+    {
+        std::cout << "Proxy: Logging the time of request.\n";
+    }
 
     /**
 	 * Proxy 维护对 RealSubject 类对象的引用。它可以延迟加载，也可以由客户机传递给代理。
 	 */
 public:
-    Proxy(RealSubject *real_subject) : real_subject_(new RealSubject(*real_subject)) {}
+    Proxy(RealSubject* real_subject) : real_subject_(new RealSubject(*real_subject)) {}
 
-    ~Proxy() { delete real_subject_; }
+    ~Proxy()
+    {
+        delete real_subject_;
+    }
     /**
 	 * 代理模式最常见的应用是延迟加载、缓存、控制访问、日志记录等。
 	 * Proxy 可以执行其中一项操作，然后根据结果将执行传递给链接的 RealSubject 对象中的相同方法.
@@ -63,7 +72,7 @@ public:
  * 然而，在现实生活中，客户大多直接与他们的真实 subjects 工作。
  * 在这种情况下，为了更容易地实现该模式，您可以从真实 subject 的类中扩展您的代理。
  */
-void ClientCode(const Subject &subject)
+void ClientCode(const Subject& subject)
 {
     // ...
     subject.Request();
