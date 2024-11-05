@@ -62,3 +62,6 @@ add_executable(ChainOfResponsibility ChainOfResponsibility.cpp)
 
 # Visitor 访问者模式
 add_executable(Visitor Visitor.cpp)
+
+# Command 命令模式
+add_executable(Command Command.cpp)
