@@ -38,6 +38,9 @@ add_executable(Facade Facade.cpp)
 # Decorator 装饰模式
 add_executable(Decorator Decorator.cpp)
 
+# Bridge 桥接模式
+add_executable(Bridge Bridge.cpp)
+
 #
 # 行为模式
 #

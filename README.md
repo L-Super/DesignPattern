@@ -30,15 +30,15 @@
 	- [工厂方法模式](工厂方法.md)(Factory Method Pattern)
 	- [抽象工厂模式](抽象工厂.md)(Abstract Factory)
 	- [建造者模式](生成器模式.md)（Builder）
-	- 原型模式（Prototype）
+	- [原型模式](原型模式.md)（Prototype）
 	- 单例模式（Singleton）
 
 -   **结构型模式**：介绍如何将对象和类组装成较大的结构， 并同时保持结构的灵活和高效。
 	- [适配器模式](适配器模式.md)（Adapter）
-	- 桥接模式（Bridge）
+	- [桥接模式](桥接模式.md)（Bridge）
 	- [装饰模式](装饰模式.md)（Decorator）
 	- [外观模式](外观模式.md)（Facade）
-	- 享元模式（Flyweight）
+	- [享元模式](享元模式.md)（Flyweight）
 	- [代理模式](代理模式.md)（Proxy）
 -   **行为模式**：负责对象间的高效沟通和职责委派。
 	- [职责链模式](职责链模式.md)（Chain of Responsibility）
